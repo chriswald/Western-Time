@@ -1,0 +1,453 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/******************************************
+ The start of my stuff.
+******************************************/
+html {
+    font-family: "Arial", sans-serif;
+    font-size: .72em;
+    background-color: white;
+}
+
+#index {
+    display: block;
+}
+
+#print {
+    display: none;
+}
+
+thead, .hour {
+    /*background-color: #eeeeee;*/
+    background-color: whitesmoke;
+    font-weight: bold;
+}
+
+table, th, td, .hour {
+    padding: 3px;
+    border: 1px solid gray;
+    empty-cells: show;
+}
+
+th, .hour {
+    padding: 10px;
+}
+
+hr {
+    border-color: whitesmoke;
+    margin-top: 20px;
+}
+
+tr {
+    height: 31px;
+}
+
+.subject_col {
+    width: 7%;
+}
+
+.cat_no_col {
+    width: 7%;
+}
+
+.section_col {
+    width: 4%;
+}
+
+.title_col {
+    width: 23%;
+}
+
+.instructor_col {
+    width: 13%;
+}
+
+.seats_col {
+    width: 8%;
+}
+
+.class_no_col {
+    width: 7%;
+}
+
+.credits_col {
+    width: 3%;
+}
+
+.meets_at_col {
+    width: auto;
+}
+
+.day_col {
+    width: 13%;
+}
+
+.navbar {
+    height: 45px;
+    line-height: 35px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#sidebar {
+    width: 275px;
+    padding: 10px;
+    position: absolute;
+    /*margin-top: 20px;*/
+    left: 0;
+    background-color: whitesmoke;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+#sharebar {
+    width: 275px;
+    padding: 10px;
+    position: absolute;
+    margin-right: 20px;
+    right: 0;
+    top: 0;
+    background-color: whitesmoke;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+}
+
+#content {
+    margin-left: 295px;
+    margin-top: 20px;
+    display: block;
+    background-color: white;
+    padding: 10px;
+}
+
+#information {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+#section_list {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow:auto;
+    height: 45%;
+    border-bottom: 1px solid gray;
+}
+
+#schedule_list {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow:auto;
+    margin-top: 10px;
+}
+
+#season {
+    float: left;
+    margin-right: 20px;
+}
+
+#year_container {
+    margin-left: 100px;
+}
+
+#subject_container {
+    margin-top: 20px;
+}
+
+#option_container {
+    margin-top: 20px;
+}
+
+#search_container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#search_box {
+    width: 270px;
+}
+
+#share_box {
+    width: 270px;
+    margin-bottom: 20px;
+}
+
+#file_container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#about_container {
+    margin-top: 10px;
+    text-align: center;
+    color: #3bb2ff;
+}
+
+#open_schedule_list {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#progress_bar {
+    width: 200px;
+    height: 30px;
+    border: 1px solid gray;
+    background-color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: -101px;
+    box-shadow: 5px 5px 10px gray;
+}
+
+#progress {
+    width: 0;
+    height: 100%;
+    background-color: #136ca6;
+}
+
+#progress_error {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: #3bb2ff;
+}
+
+a:hover {
+    color: #4498d1;
+}
+
+#sidebar_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+}
+
+#sharebar_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+}
+
+button {
+    background-color: #3bb2ff;
+    color: white;
+    border: none;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #136ca6;
+}
+
+button:active {
+    background-color: #5194bf;
+}
+
+button:disabled, .button:disabled {
+    background-color: gray;
+}
+
+
+#term_sel_btns, #reload_btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 100px;
+}
+
+#save_button {
+    width: 252px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+#share_button {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+}
+
+#ddown_button {
+    width: 20px;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: -1px;
+}
+
+#open_button {
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#print_button {
+    height: 30px;
+    font-weight: bold;
+    width: 100px;
+    margin-right: 5px;
+    margin-left:  5px;
+}
+
+.ts_btn {
+    width: 24%;
+    height: 20px;
+    margin-right: -1px;
+}
+
+#export_list {
+    position: absolute;
+    background-color: white;
+    border: 2px solid black;
+    width: 221px;
+    font-weight: bold;
+    left: 60px;
+}
+
+#export_ical, #export_csv {
+    width: 209px;
+    height: 25px;
+    padding: 5px;
+    line-height: 20px;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#export_ical:hover, #export_csv:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+#switch_view {
+    width: 150px;
+    height: 30px;
+}
+
+#weekly_view {
+    margin-top: 10px;
+    overflow: auto;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.text {
+    margin-right: 5px;
+    margin-left:  5px;
+}
+
+.sel_row {
+    background-color: #3bb2ff;
+    color: white;
+}
+
+.conflict_row {
+    background-color: #FFF4F4;
+    color: #800000;
+}
+
+.conflict_sel_row {
+    background-color: #800000;
+    color: white;
+}
+
+.closed_row {
+    border-left: 3px solid red;
+}
+
+.hidden {
+    display: none;
+}
+
+.missing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.label {
+    margin-right: 5px;
+    margin-left:  5px;
+}

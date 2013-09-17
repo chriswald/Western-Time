@@ -1,0 +1,106 @@
+@media print {
+
+html {
+    font-family: "Arial", sans-serif;
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+#index {
+    display:none;
+}
+
+#print {
+    display:block;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 8.5in;
+    height: 10.25in;
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    border: 0 solid white;
+}
+
+td, th {
+    border: 1px solid white;
+    background-color: white;
+}
+
+thead, .hour {
+    font-weight: bold;
+}
+
+#weekly_table {
+    width: 100%;
+}
+
+#weekly_table, #weekly_table th, #weekly_table td, .hour {
+    padding: 3px;
+    border: 1px solid black;
+    empty-cells: show;
+    background-color: white;
+}
+
+#student_info_table {
+    width: 100%;
+}
+
+#student_info_table tr {
+    height: 35px;
+}
+
+#student_info_table td {
+    vertical-align: bottom;
+}
+
+#schedule_list_head tr {
+    border-bottom: 1px solid black;
+}
+
+#schedule_list_body tr {
+    height: 20px;
+}
+
+#alternate_table tr {
+    height: 35px;
+}
+
+#alternate_table td {
+    vertical-align: bottom;
+}
+
+#signature_table {
+    width: 98%;
+    position: absolute;
+    bottom: 0;
+}
+
+#signature_table tr {
+    height: 25px;
+}
+
+th, .hour {
+    padding: 10px;
+}
+
+hr {
+    border-color: whitesmoke;
+    margin-top: 20px;
+}
+
+tr {
+    height: 31px;
+}
+
+} /*media: print*/
