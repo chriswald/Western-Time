@@ -85,14 +85,7 @@ function saveFile() {
 }
 
 function sendFileForSave(filename, fileContents) {
-    // "ABCNEWLINE" is used in place of \n so that the data can be submitted 
-    // using a text input field instead of a textarea, which makes it more
-    // cross-browser compatible. Make sure this is mirrored in "save.php".
-    var NL = "ABCNEWLINE";
-    var fcontent = filename + NL;
-    while (fileContents.indexOf("\n") !== -1)
-        fileContents = fileContents.replace("\n", NL);
-    fcontent += fileContents;
+    var fcontent = btoa(filename + "\n" + fileContents);
     $("#contents").val(fcontent);
     $("#submit").click();
 }
