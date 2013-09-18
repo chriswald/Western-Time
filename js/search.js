@@ -36,10 +36,12 @@ function doneTyping() {
         for (var i = 0; i < SECTIONS.length; i ++) {
             var section = SECTIONS[i];
             var include = false;
-            var str = section.program + " " + section.course + " " +
+            var str = section.program + " " + section.catalog_no + " " +
                       section.section + " " + section.title + " " +
-                      section.instructor + " " + section.course_num + " " +
-                      section.credits + " " + section._meetsAt().toString();
+                      section.instructor + " " + section.class_no + " " +
+                      section.credits + " " + 
+                      section.seats + "/" + section.filled + " " +
+                      section._meetsAt().toString();
             for (var j = 0; j < tokens.length; j ++) {
                 if (tokens[j] !== "\"" && str.toLowerCase().indexOf(tokens[j]) != -1)
                     include = true;
