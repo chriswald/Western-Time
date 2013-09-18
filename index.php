@@ -161,8 +161,8 @@ getFile($url, "res/".$filename);
                     </div>
                 </form>
                 <hr></hr>
-                <div id="subject_container">
-                    <select id="subject" name="subject" style="width: 100%;">
+                <div id="program_container">
+                    <select id="program" name="subject" style="width: 100%;">
                     </select>
                     <form style="margin-top: 10px;">
                         <input id="all" type="radio" name="college" value="all" checked="checked"><label for="all">All</label></input>
@@ -221,7 +221,7 @@ getFile($url, "res/".$filename);
                     <table>
                         <thead>
                             <tr>
-                                <th class="subject_col">Subject</th>
+                                <th class="program_col">Subject</th>
                                 <th class="cat_no_col">Cat. No</th>
                                 <th class="section_col">Section</th>
                                 <th class="title_col">Title</th>
@@ -252,7 +252,7 @@ getFile($url, "res/".$filename);
                     <table>
                         <thead>
                             <tr>
-                                <th class="subject_col">Subject</th>
+                                <th class="program_col">Subject</th>
                                 <th class="cat_no_col">Cat. No</th>
                                 <th class="section_col">Section</th>
                                 <th class="title_col">Title</th>

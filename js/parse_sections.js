@@ -22,6 +22,14 @@ function get_year_value() {
     return $("#year").find(":selected").text();
 }
 
+function get_program_value() {
+    var e = document.getElementById("program");
+    if (e.selectedIndex < 0)
+        return;
+    
+    return e.options[e.selectedIndex].value;
+}
+
 (function addXhrProgressEvent($) {
     var originalXhr = $.ajaxSettings.xhr;
     $.ajaxSetup({
@@ -298,12 +306,12 @@ function Session (session_descriptor, weeks, id, portion) {
 // VERSION 0
 // 0510,BILSA,COMPUTER,103344,1130,L1,1,UGRD,INTRO TO PROGRAMMING,2740,25,26,Scanlan,Thomas ,C,BOE 0221 Th 09:00-10:52;
 //     0     1        2      3    4  5 6    7                    8    9 10 11      12      1314                      15
-// J   ,coll ,prog    ,crsid ,crse,se,J,J   ,title               ,crs#,se,fi,last   ,first  ,C/O,location (where J = "junk field")
+// J   ,coll ,prog    ,crsid ,cat#,se,J,J   ,title               ,cls#,se,fi,last   ,first  ,C/O,location (where J = "junk field")
 //
 // VERSION 1
 // 0510,BILSA,COMPUTER,103344,1130,L1,1      ,UGRD,INTRO TO PROGRAMMING,2740,25,26,"Scanlan,Thomas",C,3,BOE 0221 Th 09:00-10:52;
 //     0     1        2      3    4  5       6    7                    8    9 10 11               121314                      15
-// J   ,coll ,prog    ,crseid,crse,se,session,J   ,title               ,crs#,se,fi,name       ,closed,credits,location,session (1=whole semester)
+// J   ,coll ,prog    ,crseid,cat#,se,session,J   ,title               ,cls#,se,fi,name       ,closed,credits,location,session (1=whole semester)
 //  (where J = "junk/ignored field")
 function Section(src, class_list_version) {
     var sect;
@@ -313,12 +321,12 @@ function Section(src, class_list_version) {
             college: "Other",
             program: src.program,
             course_id: 0,
-            course: src.course,
+            catalog_no: src.catalog_no,
             section: src.section,
             session: "",
             ugrad: true,
             title: "(no such course)",
-            course_num: 0,
+            class_no: 0,
             seats: -1,
             filled: -1,
             instructor: "(unknown)",
@@ -333,12 +341,12 @@ function Section(src, class_list_version) {
             college: tokens[1],
             program: tokens[2],
             course_id: parseInt(tokens[3], 10),
-            course: tokens[4],
+            catalog_no: tokens[4],
             section: tokens[5],
             session: tokens[6],
             ugrad: (tokens[7] == "UGRAD"),
             title: tokens[8],
-            course_num: parseInt(tokens[9], 10),
+            class_no: parseInt(tokens[9], 10),
             seats: parseInt(tokens[10], 10),
             filled: parseInt(tokens[11], 10),
             instructor: (function(){
@@ -356,12 +364,12 @@ function Section(src, class_list_version) {
             college: tokens[1],
             program: tokens[2],
             course_id: parseInt(tokens[3], 10),
-            course: tokens[4],
+            catalog_no: tokens[4],
             section: tokens[5],
             session: tokens[6],
             ugrad: (tokens[7] == "UGRAD"),
             title: tokens[8],
-            course_num: parseInt(tokens[9], 10),
+            class_no: parseInt(tokens[9], 10),
             seats: parseInt(tokens[10], 10),
             filled: parseInt(tokens[11], 10),
             instructor: (tokens[12] === "" ? "TBA" : tokens[12]),
@@ -430,7 +438,7 @@ function Section(src, class_list_version) {
 }
 
 function populateProgramCombo() {
-    $("#subject").html("");
+    $("#program").html("");
     var programs = [];
     if ($("#all").is(":checked")) {
         programs = programs.concat(ems_prog);
@@ -449,19 +457,16 @@ function populateProgramCombo() {
     }
     programs = programs.getUnique().sort();
     for (var i = 0; i < programs.length; i ++) {
-        $("#subject").append(
+        $("#program").append(
             "<option value='" + programs[i] + "'>" + programs[i] + "</option>"
         );
     }
-    $("#subject").trigger('change');
+    $("#program").trigger('change');
 }
 
+// Gets and sorts all sections in the specified program.
 function getProgramSections() {
-    var e = document.getElementById("subject");
-    if (e.selectedIndex < 0)
-        return;
-    
-    var prog = e.options[e.selectedIndex].value;
+    var prog = get_program_value();
     
     var sections = [];
     for (var i = 0; i < SECTIONS.length; i ++) {
@@ -472,7 +477,7 @@ function getProgramSections() {
     WORKING_LIST = sections.sort(sectionLessThan);
 }
 
-function populateSectionTable() {
+function populateSectionTable(wlist) {
     $("#section_body").html("");
     for (var i = 0; i < WORKING_LIST.length; i ++) {
         var text = "";
@@ -480,13 +485,13 @@ function populateSectionTable() {
             text += "<tr class='closed_row section_row'>";
         else
             text += "<tr class='section_row'>";
-        text += "<td class='subject_col'>" + WORKING_LIST[i].program + "</td>";
-        text += "<td class='cat_no_col'>" + WORKING_LIST[i].course + "</td>";
+        text += "<td class='program_col'>" + WORKING_LIST[i].program + "</td>";
+        text += "<td class='cat_no_col'>" + WORKING_LIST[i].catalog_no + "</td>";
         text += "<td class='section_col'>" + WORKING_LIST[i].section + "</td>";
         text += "<td class='title_col'>" + WORKING_LIST[i].title + "</td>";
         text += "<td class='instructor_col'>" + WORKING_LIST[i].instructor + "</td>";
         text += "<td class='seats_col'>" + WORKING_LIST[i].filled + "/" + WORKING_LIST[i].seats + (WORKING_LIST[i].closed ? " (C)" : "") + "</td>";
-        text += "<td class='class_no_col'>" + WORKING_LIST[i].course_num + "</td>";
+        text += "<td class='class_no_col'>" + WORKING_LIST[i].class_no + "</td>";
         text += "<td class='credits_col'>" + 
                 (WORKING_LIST[i].creditHoursInDoubt() ? SEE_PASS : 
                 (WORKING_LIST[i].credits === 0 ? "" : WORKING_LIST[i].credits)) + "</td>";
@@ -523,7 +528,7 @@ function populateSectionTable() {
     $("#section_body tr").dblclick(function(){
         var u = WORKING_LIST[this.rowIndex-1];
         for (var j = 0; j < SCHEDULE.length; j ++) {
-            if (u.course_num == SCHEDULE[j].course_num)
+            if (u.class_no == SCHEDULE[j].class_no)
                 return;
         }
         SCHEDULE.push(WORKING_LIST[this.rowIndex-1]);
@@ -551,13 +556,13 @@ function populateScheduleTable() {
             text += "<tr class='closed_row schedule_row'>";
         else
             text += "<tr class='schedule_row'>";
-        text += "<td class='subject_col'>" + SCHEDULE[i].program + "</td>";
-        text += "<td class='cat_no_col'>" + SCHEDULE[i].course + "</td>";
+        text += "<td class='program_col'>" + SCHEDULE[i].program + "</td>";
+        text += "<td class='cat_no_col'>" + SCHEDULE[i].catalog_no + "</td>";
         text += "<td class='section_col'>" + SCHEDULE[i].section + "</td>";
         text += "<td class='title_col'>" + SCHEDULE[i].title + "</td>";
         text += "<td class='instructor_col'>" + SCHEDULE[i].instructor + "</td>";
         text += "<td class='seats_col'>" + SCHEDULE[i].filled + "/" + SCHEDULE[i].seats + (SCHEDULE[i].closed ? " (C)" : "") + "</td>";
-        text += "<td class='class_no_col'>" + SCHEDULE[i].course_num + "</td>";
+        text += "<td class='class_no_col'>" + SCHEDULE[i].class_no + "</td>";
         text += "<td class='credits_col'>" + (doubt ? SEE_PASS : (SCHEDULE[i].credits === 0 ? "" : SCHEDULE[i].credits)) + "</td>";
         text += "<td class='meets_at_col'>" + SCHEDULE[i]._meetsAt().toString() + "</td>";
         text += "</tr>";
@@ -614,7 +619,7 @@ function populateWeeklyView() {
             for (var j = 0; j < 7; j ++) {
                 var start = sect._meetsAt().mtgHour(j);
                 if (start != -1) {
-                    var desc = sect.program + " " + sect.course + ":" + sect._meetsAt().mtgPlace(j);
+                    var desc = sect.program + " " + sect.catalog_no + ":" + sect._meetsAt().mtgPlace(j);
                     // TODO Add something about possibly showing location here
                     // See MainFrame.cpp:1186
                     var end = sect._meetsAt().mtgEndHour(j);
@@ -656,8 +661,8 @@ function sectionLessThan(a, b) {
     if (a.program != b.program)
         if (a.program > b.program) return 1;
         else return -1;
-    if (a.course != b.course)
-        if (a.course > b.course) return 1;
+    if (a.catalog_no != b.catalog_no)
+        if (a.catalog_no > b.catalog_no) return 1;
         else return -1;
     if (a.section != b.section)
         if (a.section > b.section) return 1;

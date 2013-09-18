@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    $("#subject").change(function(){
+    $("#program").change(function(){
         getProgramSections();
         populateSectionTable();
     });
-    $("#subject").keyup(function(){
+    $("#program").keyup(function(){
         getProgramSections();
         populateSectionTable();
     });
