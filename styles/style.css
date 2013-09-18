@@ -69,6 +69,7 @@ table, th, td, .hour {
     padding: 3px;
     border: 1px solid gray;
     empty-cells: show;
+    vertical-align: top;
 }
 
 th, .hour {

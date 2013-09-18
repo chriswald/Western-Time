@@ -250,7 +250,7 @@ getFile($url, "res/".$filename);
                 </div>
                 <div id="schedule_list">
                     <table>
-                        <thead>
+                        <thead id="schedule_head">
                             <tr>
                                 <th class="program_col">Subject</th>
                                 <th class="cat_no_col">Cat. No</th>
