@@ -26,7 +26,7 @@ function decodeURL() {
         var token = url.substring(0,4);
         url = url.substring(4);
         for (var i = 0; i < SECTIONS.length; i ++) {
-            if (SECTIONS[i].course_num == token)
+            if (SECTIONS[i].class_no == token)
                 SCHEDULE.push(SECTIONS[i]);
         }
     }
@@ -52,6 +52,6 @@ function getShareLink() {
     
     var text = svalue + yvalue;
     for (var i = 0; i < SCHEDULE.length; i ++)
-        text += SCHEDULE[i].course_num;
+        text += SCHEDULE[i].class_no;
     return btoa(text);
 }

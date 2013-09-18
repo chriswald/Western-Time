@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#open_button").click(function() {console.log("Click"); $("#openfile").click();});
+    $("#open_button").click(function() {$("#openfile").click();});
     if (window.FileReader)
         $("#openfile").change(handleFileLoad);
     else
@@ -57,7 +57,7 @@ function ParseFile(e) {
         var sec = tokens[2];
         
         for (var j = 0; j < SECTIONS.length; j ++) {
-            if (cat_no == SECTIONS[j].course
+            if (cat_no == SECTIONS[j].catalog_no
                  && prog == SECTIONS[j].program
                  && sec == SECTIONS[j].section) {
                 sects.push(SECTIONS[j]);
@@ -66,7 +66,7 @@ function ParseFile(e) {
         }
         if (!found) {
             var tokens = lines[i].split(" ");
-            sects.push(new Section({program: tokens[0], course: tokens[1], section: tokens[2], incomplete: true}, 1));
+            sects.push(new Section({program: tokens[0], catalog_no: tokens[1], section: tokens[2], incomplete: true}, 1));
         }
     }
     SCHEDULE = sects;
@@ -131,14 +131,14 @@ function exportCSV() {
     content += "Subject,Catalog Number,Section,Title,Seats,Filled,Closed,Credits,Class #,Instructor,Time,Location" + "\n";
     for (var i = 0; i < SCHEDULE.length; i ++) {
         content += SCHEDULE[i].program + ",";
-        content += SCHEDULE[i].course + ",";
+        content += SCHEDULE[i].catalog_no + ",";
         content += SCHEDULE[i].section + ",";
         content += "\"" + SCHEDULE[i].title + "\",";
         content += SCHEDULE[i].seats + ",";
         content += SCHEDULE[i].filled + ",";
         content += SCHEDULE[i].closed + ",";
         content += SCHEDULE[i].credits + ",";
-        content += SCHEDULE[i].course_num + ",";
+        content += SCHEDULE[i].class_no + ",";
         content += "\"" + SCHEDULE[i].instructor + "\",";
         content += "\"" + SCHEDULE[i]._meetsAt().times() + "\",";
         content += "\"" + SCHEDULE[i]._meetsAt().locations() + "\"\n";

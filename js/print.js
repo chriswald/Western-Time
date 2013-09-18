@@ -26,9 +26,9 @@ function fillInScheduleList() {
     for (var i = 0; i < SCHEDULE.length; i ++) {
         var str = "<tr>";
         str += "<td>" + SCHEDULE[i].program + "</td>";
-        str += "<td>" + SCHEDULE[i].course + "</td>";
+        str += "<td>" + SCHEDULE[i].catalog_no + "</td>";
         str += "<td>" + SCHEDULE[i].section + "</td>";
-        str += "<td>" + SCHEDULE[i].course_num + "</td>";
+        str += "<td>" + SCHEDULE[i].class_no + "</td>";
         str += "<td>" + SCHEDULE[i].title + "</td>";
         str += "<td>" + (SCHEDULE[i].creditHoursInDoubt() ? SEE_PASS : (SCHEDULE[i].credits === 0 ? "" : SCHEDULE[i].credits)) + "</td>";
         str += "</tr>";

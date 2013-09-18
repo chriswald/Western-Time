@@ -620,8 +620,6 @@ function populateWeeklyView() {
                 var start = sect._meetsAt().mtgHour(j);
                 if (start != -1) {
                     var desc = sect.program + " " + sect.catalog_no + ":" + sect._meetsAt().mtgPlace(j);
-                    // TODO Add something about possibly showing location here
-                    // See MainFrame.cpp:1186
                     var end = sect._meetsAt().mtgEndHour(j);
                     if (start <= end && end != -1) {
                         for (var hour = start; hour <= end; hour ++) {
