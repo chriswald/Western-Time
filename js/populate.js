@@ -119,7 +119,7 @@ function populate(response) {
     $("#search_box").removeAttr("disabled");
     
     // CRIPPLE THE PROGRAM HERE
-    var cripple = false;
+    var cripple = true;
     if (cripple) {
         console.log("CRIPPLED");
         $("#open_button").attr("disabled", "disabled");
@@ -132,6 +132,12 @@ function populate(response) {
         
         $("#information").addClass("hidden");
         $("#schedule_list").addClass("hidden");
+        $("#weekly_view").addClass("hidden");
+        SCHEDULE = [];
+        populateSectionTable();
+        populateScheduleTable();
+        populateWeeklyView();
+        fillInPrintForm();
     }
     
     console.log("...Done");
