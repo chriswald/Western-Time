@@ -79,6 +79,7 @@ th, .hour {
 hr {
     border-color: whitesmoke;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 tr {
@@ -182,7 +183,7 @@ tr {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    overflow:auto;
+    overflow: auto;
     height: 45%;
     border-bottom: 1px solid gray;
 }
@@ -195,7 +196,7 @@ tr {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    overflow:auto;
+    overflow: auto;
     margin-top: 10px;
 }
 
@@ -208,16 +209,7 @@ tr {
     margin-left: 100px;
 }
 
-#program_container {
-    margin-top: 20px;
-}
-
-#option_container {
-    margin-top: 20px;
-}
-
 #search_container {
-    margin-top: 20px;
     width: 100%;
 }
 
@@ -402,8 +394,6 @@ button:disabled, .button:disabled {
 
 #weekly_view {
     margin-top: 10px;
-    overflow: auto;
-    
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -411,6 +401,7 @@ button:disabled, .button:disabled {
     -ms-user-select: none;
     user-select: none;
     cursor: default;
+    overflow: auto;
 }
 
 .text {

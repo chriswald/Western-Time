@@ -82,11 +82,14 @@ getFile($url, "res/".$filename);
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" href="styles/print.css" type="text/css" media="print">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script type="text/javascript" src="js/showpanel.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/event.js"></script>
         <script type="text/javascript" src="js/meeting.js"></script>
+        <script type="text/javascript" src="js/section.js"></script>
+        <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
+        <script type="text/javascript" src="js/showpanel.js"></script>
+        <script type="text/javascript" src="js/populate.js"></script>
         <script type="text/javascript" src="js/nav_buttons.js"></script>
         <script type="text/javascript" src="js/file.js"></script>
         <script type="text/javascript" src="js/options.js"></script>

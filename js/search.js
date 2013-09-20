@@ -18,7 +18,7 @@ $(document).ready(function() {
 function doneTyping() {
     var search = $("#search_box").val().toLowerCase();
     if (search.length === 0) {
-        $("#subject").removeAttr("disabled");
+        $("#program").removeAttr("disabled");
         $("#all").removeAttr("disabled");
         $("#ems").removeAttr("disabled");
         $("#lae").removeAttr("disabled");
@@ -26,7 +26,7 @@ function doneTyping() {
         getProgramSections();
     }
     else {
-        $("#subject").attr("disabled", "true");
+        $("#program").attr("disabled", "true");
         $("#all").attr("disabled", "true");
         $("#ems").attr("disabled", "true");
         $("#lae").attr("disabled", "true");

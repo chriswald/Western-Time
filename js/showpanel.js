@@ -9,9 +9,6 @@ $(document).ready(function() {
     // Do the initial sizing on page load, then set up an event listener that
     // adjusts the content when the user resizes the window.
     onResize();
-    // The layout needs to be done again after the DOM is updated once for
-    // accurate results in some fringe cases. This should go unnoticed.
-    window.setTimeout(onResize, 10);
     $(window).resize(onResize);
 });
 
@@ -20,13 +17,6 @@ function onResize() {
     var height = $(window).height();
     // Set a minimum height. This should be about the height of the sidebar.
     if (height < 500) height = 500;
-    // The height of the (minimized) sharebar and padding on either end.
-    var stuff_around_content = 40; //px.
-    $("#content").css("height", (height-stuff_around_content) + "px");
-    
-    var schedule_height = height - ($("#information").position().top + $("#information").height()) - 52;
-    $("#schedule_list").css("height", schedule_height + "px");
-    $("#weekly_view").css("height", schedule_height + "px");
     
     if (width < 1280) {
         small = true;
@@ -36,110 +26,59 @@ function onResize() {
             $("#content").css("margin-left", "20px");
         }
         else {
-            $("#sidebar").css("left", "-275px");
+            $("#sidebar").css("left", -($("#sidebar").width()));
             $("#content").css("margin-left", "20px");
         }
         $("#sidebar_btn").removeClass("hidden");
     }
     else {
+        $("#sidebar").css("left", "0");
         $("#sidebar_btn").addClass("hidden");
-        $("#content").css("margin-left", "295px");
+        $("#content").css("margin-left", $("#sidebar").width() + 20);
     }
     
+    // The height of the (minimized) sharebar and padding on either end of
+    // #content.
+    var stuff_around_content = 40; //px.
+    $("#content").height((height-stuff_around_content) + "px");
+    
+    var schedule_height = height - ($("#information").position().top + $("#information").height()) - 52;
+    $("#schedule_list").css("height", schedule_height + "px");
+    $("#weekly_view").css("height", schedule_height + "px");
+    
+    // Minimize the sharebar
     var sharebar_height = $("#sharebar").height();
     $("#sharebar").css("top", -sharebar_height + "px");
 }
 
 function toggleSidebar()
 {
-    if (sidebar_showing)
-        minimize();
-    else
-        maximize();
-}
-
-function toggleSharebar()
-{
-    if (sharebar_showing)
-        minimize_share();
-    else
-        maximize_share();
-}
-
-function minimize()
-{
-    sidebar_int = setInterval(moveMin, 10);
-}
-
-function maximize()
-{
-    sidebar_int = setInterval(moveMax, 10);
-}
-
-function minimize_share()
-{
-    sharebar_int = setInterval(moveMinShare, 10);
-}
-
-function maximize_share()
-{
-    sharebar_int = setInterval(moveMaxShare, 10);
-}
-
-function moveMin() {
-    var delta = -20;
-    var loc_side = parseInt($("#sidebar").css("left"), 10);
-    
-    loc_side += delta;
-    $("#sidebar").css("left", loc_side + "px");
-    
-    if (loc_side < -275) {
-        clearInterval(sidebar_int);
-        $("#sidebar").css("left", "-275px");
+    if (sidebar_showing) {
+        $("#sidebar").animate({
+            left: -($("#sidebar").width())
+        }, 100);
         sidebar_showing = false;
     }
-}
-
-function moveMax() {
-    var delta = 20;
-    var loc_side = parseInt($("#sidebar").css("left"), 10);
-    
-    loc_side += delta;
-    $("#sidebar").css("left", loc_side + "px");
-    
-    if (loc_side > 0) {
-        clearInterval(sidebar_int);
-        $("#sidebar").css("left", "0");
+    else {
+        $("#sidebar").animate({
+            left: 0
+        }, 100);
         sidebar_showing = true;
     }
 }
 
-function moveMinShare() {
-    var delta = -20;
-    var loc_share = parseInt($("#sharebar").css("top"), 10);
-    
-    loc_share += delta;
-
-    $("#sharebar").css("top", loc_share + "px");
-    
-    if (loc_share < -($("#sharebar").height())) {
-        clearInterval(sharebar_int);
-        $("#sharebar").css("top", -($("#sharebar").height()));
+function toggleSharebar()
+{
+    if (sharebar_showing) {
+        $("#sharebar").animate({
+            top: -($("#sharebar").height())
+        }, 100);
         sharebar_showing = false;
     }
-}
-
-function moveMaxShare() {
-    var delta = 20;
-    var loc_share = parseInt($("#sharebar").css("top"), 10);
-    
-    loc_share += delta;
-
-    $("#sharebar").css("top", loc_share + "px");
-    
-    if (loc_share > 0) {
-        clearInterval(sharebar_int);
-        $("#sharebar").css("top", "0px");
+    else {
+        $("#sharebar").animate({
+            top: 0
+        }, 100);
         sharebar_showing = true;
     }
 }
