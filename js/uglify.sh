@@ -1,12 +1,25 @@
 mkdir min
+mkdir min/js
+mkdir min/styles
+mkdir min/js/mobile
 
 for file in *.js
 do
-    uglifyjs "$file" > "min/$file"
-    mv "min/$file" "min/${file/.js}.min.js"
+    uglifyjs "$file" > "min/js/${file/.js}.min.js"
 done
 
-cp ../*.php ../styles/*.css min
+cd mobile
+
+for file in *.js
+do
+    uglifyjs "$file" > "../min/js/mobile/${file/.js}.min.js"
+done
+
+cd ..
+
+cp ../*.php min/
+cp ../styles/*.css min/styles/
+
 tar -cz min > archive.tar.gz
 php emailjs.php
 rm -f archive.tar.gz

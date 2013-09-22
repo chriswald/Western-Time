@@ -47,16 +47,8 @@ table {
 ******************************************/
 html {
     font-family: "Arial", sans-serif;
-    font-size: .72em;
+    font-size: 2em;
     background-color: white;
-}
-
-#index {
-    display: block;
-}
-
-#print {
-    display: none;
 }
 
 thead, .hour {
@@ -82,48 +74,25 @@ hr {
     margin-bottom: 20px;
 }
 
-tr {
-    height: 31px;
+td, th {
+    height: 70px;
 }
 
-.program_col {
-    width: 7%;
+#menu_bar {
+    background-color: #3bb2ff;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
 
-.cat_no_col {
-    width: 7%;
+#section_table {
+    width: 100%;
+    margin-top: 70px;
 }
 
-.section_col {
-    width: 4%;
-}
-
-.title_col {
-    width: 23%;
-}
-
-.instructor_col {
-    width: 13%;
-}
-
-.seats_col {
-    width: 8%;
-}
-
-.class_no_col {
-    width: 7%;
-}
-
-.credits_col {
-    width: 3%;
-}
-
-.meets_at_col {
-    width: auto;
-}
-
-.day_col {
-    width: 13%;
+.closed_row {
+    border-left: 7px solid red;
 }
 
 #progress_bar {

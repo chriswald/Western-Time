@@ -119,7 +119,7 @@ function populate(response) {
     $("#search_box").removeAttr("disabled");
     
     // CRIPPLE THE PROGRAM HERE
-    var cripple = true;
+    var cripple = false;
     if (cripple) {
         console.log("CRIPPLED");
         $("#open_button").attr("disabled", "disabled");

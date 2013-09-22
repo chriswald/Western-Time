@@ -84,89 +84,17 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/section.js"></script>
         <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            var season = "Fall";
-            var year = "2013";
-            DownloadClassList(season, year, OnDone, {verbose: true, success_cb: OnSuccess, progress_cb: OnProgress, error_cb: OnError});
-            
-            function OnDone(response) {
-                ParseSections(response);
-                
-                $("#section_table_body").html("");
-                for (var i = 0; i < SECTIONS.length; i ++) {
-                    var text = "";
-                    if (SECTIONS[i].closed)
-                        text += "<tr class='closed_row section_row'>";
-                    else
-                        text += "<tr class='section_row'>";
-                    text += "<td class='program_col'>" + SECTIONS[i].program + "</td>";
-                    text += "<td class='cat_no_col'>" + SECTIONS[i].catalog_no + "</td>";
-                    text += "<td class='section_col'>" + SECTIONS[i].section + "</td>";
-                    text += "<td class='title_col'>" + SECTIONS[i].title + "</td>";
-                    text += "<td class='instructor_col'>" + SECTIONS[i].instructor + "</td>";
-                    text += "<td class='seats_col'>" + SECTIONS[i].filled + "/" + SECTIONS[i].seats + (SECTIONS[i].closed ? " (C)" : "") + "</td>";
-                    text += "<td class='class_no_col'>" + SECTIONS[i].class_no + "</td>";
-                    text += "<td class='credits_col'>" + 
-                            (SECTIONS[i].creditHoursInDoubt() ? SEE_PASS : 
-                            (SECTIONS[i].credits === 0 ? "" : SECTIONS[i].credits)) + "</td>";
-                    text += "<td class='meets_at_col'>" + SECTIONS[i]._meetsAt().toString() + "</td>";
-                    text += "</tr>";
-                    $("#section_table_body").append(text);
-                }
-            }
-            
-            var loadTimeout;
-            var loadTimeout_called = false;
-            
-            function OnSuccess() {
-                clearTimeout(loadTimeout);
-                $("#progress_bar").addClass("hidden");
-            }
-            
-            function OnProgress(evt) {
-                if (evt.lengthComputable) {
-                    var percent = parseInt( (evt.loaded / evt.total * 100), 10);
-                    if (!loadTimeout_called) {
-                        loadTimeout = setTimeout(function() {
-                            if (percent < 80)
-                                $("#progress_bar").removeClass("hidden");
-                        }, 500);
-                        loadTimeout_called = true;
-                    }
-                    $("#progress").width(percent + "%");
-                }
-                else {
-                    console.log("Length not computable.");
-                }
-            }
-            
-            function OnError() {
-                clearTimeout(loadTimeout);
-                $("#progress_bar").removeClass("hidden");
-                $("#progress").width("100%");
-                $("#progress").css("background-color", "#e60000");
-                $("#progress").css("cursor", "pointer");
-                $("#progress").click(function() {location.reload();});
-                $("#progress_error").removeClass("hidden");
-            }
-        });
-        </script>
+        <script type="text/javascript" src="js/mobile/populate.js"></script>
     </head>
     
     <body>
+        <div id="menu_bar">
+        </div>
         <table id="section_table">
             <thead id="section_table_head">
                 <tr>
-                    <th class="program_col">Subject</th>
-                    <th class="cat_no_col">Cat. No</th>
                     <th class="section_col">Section</th>
                     <th class="title_col">Title</th>
-                    <th class="instructor_col">Instructor</th>
-                    <th class="seats_col">Filled/Seats</th>
-                    <th class="class_no_col">Class #</th>
-                    <th class="credits_col">Credits</th>
-                    <th class="meets_at_col">Meets</th>
                 </tr>
             </thead>
             <tbody id="section_table_body">
