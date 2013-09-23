@@ -76,6 +76,7 @@ getFile($url, "res/".$filename);
         <meta name="author" content="Christopher Wald, with significant contributions from Dr. Robert W. Hasker">
         <meta name="description" content=<?php echo '"' . $TITLE . '"'; ?>>
         <meta name="copyright" content="Copyright (c) 2013 Christopher J. Wald. All rights reserved.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles/mobile.css" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -85,10 +86,30 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
         <script type="text/javascript" src="js/mobile/populate.js"></script>
+        <script type="text/javascript" src="js/mobile/menu.js"></script>
+        <script type="text/javascript" src="js/mobile/search.js"></script>
     </head>
     
     <body>
         <div id="menu_bar">
+            <h2 id="title"><?php echo $TITLE; ?></h2>
+            <div id="icons">
+                <image id="search_button" class="icon" src="img/search.png" alt="Search sections"></image>
+                <image id="menu_button" class="icon" src="img/menu.png" alt="Drop Down Menu"></image>
+            </div>
+        </div>
+        <div id="menu_body">
+            <div id="menu_content">
+                <select id="program_select">
+                </select>
+            </div>
+        </div>
+        <div id="search_body">
+            <div id="search_content">
+                <form action="#">
+                    <input type="text" id="search_bar"></input>
+                </form>
+            </div>
         </div>
         <table id="section_table">
             <thead id="section_table_head">

@@ -1,4 +1,5 @@
 mkdir min
+mkdir min/img
 mkdir min/js
 mkdir min/styles
 mkdir min/js/mobile
@@ -19,6 +20,7 @@ cd ..
 
 cp ../*.php min/
 cp ../styles/*.css min/styles/
+cp ../img/* min/img/
 
 tar -cz min > archive.tar.gz
 php emailjs.php
