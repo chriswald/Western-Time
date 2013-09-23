@@ -3,6 +3,9 @@
 <?php
 $TITLE="Western Time Mobile";
 
+$season = $_GET["season"];
+$year = $_GET["year"];
+
 $fn = base64_decode($_GET["f"]);
 if ((!$season || !$year) && $fn)
 {
@@ -100,8 +103,13 @@ getFile($url, "res/".$filename);
         </div>
         <div id="menu_body">
             <div id="menu_content">
-                <select id="program_select">
-                </select>
+                <select id="program_select"></select>
+                <form style="margin-top: 10px; width: 100%">
+                    <input id="all" type="radio" name="college" value="all" checked="checked"><label for="all">All</label></input>
+                    <input id="ems" type="radio" name="college" value="EMS" style="margin-left: 10px"><label for="ems">EMS</label></input>
+                    <input id="lae" type="radio" name="college" value="LAE" style="margin-left: 10px"><label for="lae">LAE</label></input>
+                    <input id="bilsa" type="radio" name="college" value="BILSA" style="margin-left: 10px"><label for="bilsa">BILSA</label></input>
+                </form>
             </div>
         </div>
         <div id="search_body">

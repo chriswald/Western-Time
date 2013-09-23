@@ -103,6 +103,33 @@ function populateSectionTable(list) {
     });
 }
 
+function populateProgramSelect() {
+    $("#program_select").html("");
+    var programs = [];
+    if ($("#all").is(":checked")) {
+        programs = programs.concat(ems_prog);
+        programs = programs.concat(lae_prog);
+        programs = programs.concat(bilsa_prog);
+        programs = programs.concat(other_prog);
+    }
+    else if ($("#ems").is(":checked")) {
+        programs = programs.concat(ems_prog);
+    }
+    else if ($("#lae").is(":checked")) {
+        programs = programs.concat(lae_prog);
+    }
+    else if ($("#bilsa").is(":checked")) {
+        programs = programs.concat(bilsa_prog);
+    }
+    programs = programs.getUnique().sort();
+    for (var i = 0; i < programs.length; i ++) {
+        $("#program_select").append(
+            "<option value='" + programs[i] + "'>" + programs[i] + "</option>"
+        );
+    }
+    $("#program_select").trigger('change');
+}
+
 function get_program_value() {
     var e = document.getElementById("program_select");
     if (e.selectedIndex < 0)

@@ -19,13 +19,13 @@ $(document).ready(function() {
     $("#program_select").change(function() {
         getProgramSections();
         populateSectionTable();
-        $("#menu_button").click();
+        //$("#menu_button").click();
+    });
+    
+    $("input[name='college']").change(function() {
+        populateProgramSelect();
     });
     
     $("#menu_body").height($(window).height()-$("#menu_bar").height());
     $("#menu_body").css("top", -$("#menu_body").height());
-});
-
-$(document).resize(function(evt) {
-    $("menu_content").html($(window).width() + " by " + $(window).height());
 });
