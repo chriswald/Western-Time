@@ -353,8 +353,8 @@ function populateWeeklyView() {
 
 function populateShareBox() {
     var url = document.URL;
-    var slash = url.indexOf("/", 7);
-    url = url.substring(7,slash);
+    var slash = url.indexOf("/", 8);
+    url = url.substring(8,slash);
     $("#share_box").val(url + "/" + getShareLink());
 }
 

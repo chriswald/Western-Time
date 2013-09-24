@@ -103,6 +103,43 @@ getFile($url, "res/".$filename);
         </div>
         <div id="menu_body">
             <div id="menu_content">
+                <form action="./mobile.php" id="semester" method="get">
+                    <div id="season_container">
+                        <select id="season" name="season">
+                        <?php
+                            function radio_button($sson)
+                            {
+                                global $season;
+                                echo "<option value='" . $sson . "'";
+                                if ($sson == $season)
+                                    echo " selected='selected'";
+                                echo ">" . $sson . "</option>";
+                            }
+                            radio_button("Winter");
+                            radio_button("Spring");
+                            radio_button("Summer");
+                            radio_button("Fall");
+                        ?>
+                        </select>
+                    </div>
+                    <div id="year_container">
+                        <select id="year" name="year">
+                        <?php
+                            for ($i=$maxyear; $i>=1999; $i--)
+                            {
+                                echo '<option value="' . $i . '"';
+                                if ($i == $year)
+                                    echo ' selected';
+                                echo '>' . $i . '</option>';
+                            }
+                        ?>
+                        </select>
+                    </div>
+                    <div id="reload_btn">
+                        <button type="submit" value="Reload" style="width: 100%">Reload</button>
+                    </div>
+                </form>
+                <hr></hr>
                 <select id="program_select"></select>
                 <form style="margin-top: 10px; width: 100%">
                     <input id="all" type="radio" name="college" value="all" checked="checked"><label for="all">All</label></input>

@@ -2,6 +2,8 @@ function decodeURL() {
     var url = document.URL;
     while (url.indexOf("/") !== -1)
         url = url.substring(url.indexOf("/")+1);
+    if (url.indexOf("index.php") !== -1)
+        url = url.substring(url.indexOf("index.php") + "index.php".length);
     if (url.indexOf("?") !== -1)
         url = url.substring(0, url.indexOf("?"));
     if (url !== "")

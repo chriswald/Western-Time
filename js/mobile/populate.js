@@ -2,8 +2,8 @@ var ems_prog = [], lae_prog = [], bilsa_prog = [], other_prog = [];
 var WORKING_LIST = [];
 
 $(document).ready(function() {
-    var season = "Fall";
-    var year = "2013";
+    var season = $("#season").find(":selected").text();
+    var year = $("#year").find(":selected").text();
     DownloadClassList(season, year, OnDone, {verbose: true, success_cb: OnSuccess, progress_cb: OnProgress, error_cb: OnError});
 });
     
