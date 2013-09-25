@@ -94,13 +94,29 @@ function populateSectionTable(list) {
         text += "<td class='section_col'>" + to_use[i].section + "</td>";
         text += "<td class='title_col'>" + to_use[i].title + "</td>";
         text += "</tr>";
+        text += "<tr class='extra_content hidden' id='" + to_use[i].class_no + "'>";
+        text += "<td>More Info</td><td></td></tr>";
         $("#section_table_body").append(text);
     }
     
     $("#section_table_body tr").click(function(){
-        $(".sel_row").removeClass("sel_row");
-        $(this).addClass("sel_row");
+        onSelectRow($(this));
     });
+}
+
+function onSelectRow(that) {
+    $(".sel_row").removeClass("sel_row");
+    $(".extra_content").addClass("hidden");
+    that.addClass("sel_row");
+    var top = that.position().top - $("#menu_bar").height();
+    $("html body").animate({
+        scrollTop: top
+    });
+    var id = that.next().attr("id");
+    for (var i = 0; i < SECTIONS.length; i ++)
+        if (SECTIONS[i].class_no == id)
+            $("#" + id).html("<td>More Info</td><td>" + SECTIONS[i].toString() + "</td>");
+    $("#" + id).removeClass("hidden");
 }
 
 function populateProgramSelect() {
