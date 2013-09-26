@@ -94,14 +94,83 @@ function populateSectionTable(list) {
         text += "<td class='section_col'>" + to_use[i].section + "</td>";
         text += "<td class='title_col'>" + to_use[i].title + "</td>";
         text += "</tr>";
-        text += "<tr class='extra_content hidden' id='" + to_use[i].class_no + "'>";
-        text += "<td>More Info</td><td></td></tr>";
+        text += "<tr class='" + (to_use[i].closed?"closed_row ":"") + "extra_content hidden' id='" + to_use[i].class_no + "'>";
+        text += "<td>More Info</td><td>";
+        text += "<span class='extra_class'>" + to_use[i].program + " " + to_use[i].catalog_no + "</span>";
+        text += "<span>&nbsp;-&nbsp;</span>";
+        text += "<span class='extra_class_no'>" + to_use[i].class_no + "</span>";
+        text += "<span>&nbsp;&nbsp;&nbsp;</span>";
+        text += "<span class='extra_instructor'>" + to_use[i].instructor + "</span>";
+        text += "<br/>";
+        text += "<span class='extra_seats'>" + to_use[i].filled + "/" + to_use[i].seats + (to_use[i].closed ? " (C)" : "") + "</span>";
+        text += "<span>&nbsp;&nbsp;&nbsp;</span>";
+        text += "<span class='extra_credits'>";
+        text += generateCredits(to_use[i]);
+        text += "</span>";
+        text += "<br/>";
+        text += generateMeetingTimeTable(to_use[i]);
+        text += "</td></tr>";
         $("#section_table_body").append(text);
     }
     
     $("#section_table_body tr").click(function(){
         onSelectRow($(this));
     });
+    
+    $(".extra_content").click(function(){
+        $(this).addClass("hidden");
+    });
+}
+
+function generateCredits(sec) {
+    if (sec.creditHoursInDoubt())
+        return "See PASS for credit information";
+    if (sec.credits === 0)
+        return "";
+    if (sec.credits === 1)
+        return "1 Credit";
+    return sec.credits + " Credits";
+}
+
+function generateMeetingTimeTable(sec) {
+    var text = "<table class='extra_meeting'><tbody>";
+    text += "<tr><td>";
+    if (typeof sec._meetsAt().mtgDays !== "undefined") {
+        text += generateMeetingRow(sec._meetsAt());
+    }
+    else if (typeof sec._meetsAt().first !== "undefined") {
+        text += generateMeetingRow(sec._meetsAt().first);
+        text += "</td></tr><tr><td>";
+        text += generateMeetingRow(sec._meetsAt().second);
+    }
+    else {
+        text += sec._meetsAt().toStringSansSession();
+    }
+    text += "</td></tr>";
+    text += "</tbody></table>";
+    return text;
+}
+
+function generateMeetingRow(meeting) {
+    var text = "";
+    text += expandDays(meeting.mtgDays());
+    text += "</td><td>";
+    text += meeting.start.toString() + " - " + meeting.end.toString();
+    text += "<br/>";
+    text += meeting.place;
+    return text;
+}
+
+function expandDays(days) {
+    days = days.replace(/Sa/, "Saturday<br/>");
+    days = days.replace(/Su/, "Sunday<br/>");
+    days = days.replace(/M/, "Monday<br/>");
+    days = days.replace(/Th/, "Thursday<br/>");
+    days = days.replace(/TTh/, "TuTh");
+    days = days.replace(/Tu/, "Tuesday<br/>");
+    days = days.replace(/W/, "Wednesday<br/>");
+    days = days.replace(/F/, "Friday<br/>");
+    return days;
 }
 
 function onSelectRow(that) {
@@ -113,9 +182,6 @@ function onSelectRow(that) {
         scrollTop: top
     });
     var id = that.next().attr("id");
-    for (var i = 0; i < SECTIONS.length; i ++)
-        if (SECTIONS[i].class_no == id)
-            $("#" + id).html("<td>More Info</td><td>" + SECTIONS[i].toString() + "</td>");
     $("#" + id).removeClass("hidden");
 }
 

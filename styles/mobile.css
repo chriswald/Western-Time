@@ -79,6 +79,18 @@ td, th {
     height: 70px;
 }
 
+.extra_meeting {
+    margin-left: 20px;
+    border: none;
+}
+
+.extra_meeting td{
+    vertical-align: top;
+    padding-right: 25px;
+    padding-top: 10px;
+    border: none;
+}
+
 #title {
     color: white;
     padding-top: 20px;

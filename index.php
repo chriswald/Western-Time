@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-
 <?php
+include_once("detectmobilebrowser.php");
+$detect = new Mobile_Detect;
+if ($detect->isMobile())
+    header("Location: mobile.php");
+
 $TITLE='Western Time';
 
 $season = $_GET["season"];
@@ -72,6 +75,8 @@ $filename = "semester_days.txt";
 $url = "http://www.uwplatt.edu/csse/uwpclasses/" . $filename;
 getFile($url, "res/".$filename);
 ?>
+
+<!DOCTYPE html>
 
 <html>
     <head>

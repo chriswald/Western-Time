@@ -7,12 +7,22 @@ $(document).ready(function() {
                 top: -($("#menu_body").height())
             });
             menu_exposed = false;
+            
+            $("#section_table_body tr").click(function(){
+                onSelectRow($(this));
+            });
+            
+            $(".extra_content").click(function(){
+                $(this).addClass("hidden");
+            });
         }
         else {
             $("#menu_body").animate({
                 top: parseInt($("#menu_bar").height(), 10)
             });
             menu_exposed = true;
+            $("#section_table_body tr").unbind("click");
+            $(".extra_content").unbind("click");
         }
     });
     
