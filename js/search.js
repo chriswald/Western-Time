@@ -26,9 +26,11 @@ function Search(opt) {
                 str += expandDays(section._meetsAt().first.mtgDays()).join(" ") + " ";
             if (typeof section._meetsAt().second !== "undefined" &&
                 typeof section._meetsAt().second.mtgDays !== "undefined")
-                str += expandDays(section._meetsAt().second.mtgDays()).join(" ") + " ";   
+                str += expandDays(section._meetsAt().second.mtgDays()).join(" ") + " ";
+            
+            str = str.toLowerCase();
             for (var j = 0; j < tokens.length; j ++) {
-                if (tokens[j] !== "\"" && str.toLowerCase().indexOf(tokens[j]) != -1)
+                if (tokens[j] !== "\"" && str.indexOf(tokens[j]) != -1)
                     include = true;
                 else {
                     include = false;
