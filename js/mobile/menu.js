@@ -10,17 +10,17 @@ $(document).ready(function() {
     $("#menu_body").addClass("hidden");
     
     $("#menu_button").click(function(){
-        //$("#menu_body").height($(window).height()-$("#menu_bar").height());
+        
         if (menu_exposed) {
             $("#menu_body").animate({
-                height: 0,
-                display: "none"
+                height: 0
             }, {done: function(){$("#menu_body").addClass("hidden");}});
             menu_exposed = false;
         }
         else {
             $("#menu_body").animate({
-                height: screen.height,
+                height: 500,
+                scrollTo: 0
             }, {start: function(){$("#menu_body").removeClass("hidden");}});
             menu_exposed = true;
         }
@@ -29,7 +29,6 @@ $(document).ready(function() {
     $("#program_select").change(function() {
         getProgramSections();
         populateSectionTable();
-        //$("#menu_button").click();
     });
     
     $("input[name='college']").change(function() {

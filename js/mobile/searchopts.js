@@ -16,7 +16,8 @@ $(document).ready(function() {
         }
         else {
             $("#search_body").animate({
-                height: 90
+                height: 90,
+                scrollTo: 0
             }, {start: function(){$("#search_body").removeClass("hidden");}});
             search_exposed = true;
             $("#search_bar").focus();
