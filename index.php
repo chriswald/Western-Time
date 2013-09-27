@@ -101,7 +101,9 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/weekly.js"></script>
         <script type="text/javascript" src="js/print.js"></script>
         <script type="text/javascript" src="js/search.js"></script>
+        <script type="text/javascript" src="js/searchopts.js"></script>
         <script type="text/javascript" src="js/share.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
         
         <!--Google Analytics-->
         <!--To be added later-->
@@ -193,7 +195,7 @@ getFile($url, "res/".$filename);
                 <hr></hr>
                 <div id="search_container">
                     <form>
-                        <input id="search_box" type="text" placeholder="Search..." disabled></input>
+                        <input id="search_bar" type="text" placeholder="Search..." disabled></input>
                     </form>
                 </div>
                 <hr></hr>

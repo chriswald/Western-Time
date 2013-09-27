@@ -72,7 +72,7 @@ function DownloadClassList(season, year, callback, options) {
         success: function(response) {
             if (typeof options.success_cb !== "undefined")
                 options.success_cb();
-            callback(response);
+            setTimeout(function() {callback(response);}, 1);
         },
         progress: options.progress_cb,
         error: options.error_cb

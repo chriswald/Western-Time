@@ -1,5 +1,11 @@
 $(document).ready(function() {
     var menu_exposed = false;
+    
+    if (screen.width <= 320) {
+        $(".icon").width("32px");
+        $(".icon").height("32px");
+    }
+    
     $("#menu_button").click(function(){
         $("#menu_body").height($(window).height()-$("#menu_bar").height());
         if (menu_exposed) {

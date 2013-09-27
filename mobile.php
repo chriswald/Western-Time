@@ -82,15 +82,17 @@ getFile($url, "res/".$filename);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles/mobile.css" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/event.js"></script>
         <script type="text/javascript" src="js/meeting.js"></script>
         <script type="text/javascript" src="js/section.js"></script>
         <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
+        <script type="text/javascript" src="js/search.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/mobile/populate.js"></script>
         <script type="text/javascript" src="js/mobile/menu.js"></script>
-        <script type="text/javascript" src="js/mobile/search.js"></script>
+        <script type="text/javascript" src="js/mobile/searchopts.js"></script>
     </head>
     
     <body>

@@ -153,24 +153,12 @@ function generateMeetingTimeTable(sec) {
 
 function generateMeetingRow(meeting) {
     var text = "";
-    text += expandDays(meeting.mtgDays());
+    text += expandDays(meeting.mtgDays()).join("<br/>");
     text += "</td><td>";
     text += meeting.start.toString() + " - " + meeting.end.toString();
     text += "<br/>";
     text += meeting.place;
     return text;
-}
-
-function expandDays(days) {
-    days = days.replace(/Sa/, "Saturday<br/>");
-    days = days.replace(/Su/, "Sunday<br/>");
-    days = days.replace(/M/, "Monday<br/>");
-    days = days.replace(/Th/, "Thursday<br/>");
-    days = days.replace(/TTh/, "TuTh");
-    days = days.replace(/Tu/, "Tuesday<br/>");
-    days = days.replace(/W/, "Wednesday<br/>");
-    days = days.replace(/F/, "Friday<br/>");
-    return days;
 }
 
 function onSelectRow(that) {

@@ -1,36 +1,13 @@
-var typingTimer;
-var timeout = 200;
-
-$(document).ready(function() {
-    $("#search_box").keydown(function() {
-        clearTimeout(typingTimer);
-    });
-    $("#search_box").keyup(function() {
-        typingTimer = setTimeout(doneTyping, timeout);
-    });
-    
-    // doneTyping needs to be called after a short period of time so the DOM
-    // can be updated before the function tries to read val()
-    $("#search_box").bind("paste", function() { setTimeout(doneTyping, timeout); });
-    $("#search_box").bind("cut", function() { setTimeout(doneTyping, timeout); });
-});
-
-function doneTyping() {
-    var search = $("#search_box").val().toLowerCase();
+function Search(opt) {
+    var search = $("#search_bar").val().toLowerCase();
     if (search.length === 0) {
-        $("#program").removeAttr("disabled");
-        $("#all").removeAttr("disabled");
-        $("#ems").removeAttr("disabled");
-        $("#lae").removeAttr("disabled");
-        $("#bilsa").removeAttr("disabled");
-        getProgramSections();
+        if (typeof opt.empty_func !== "undefined")
+            opt.empty_func();
     }
     else {
-        $("#program").attr("disabled", "true");
-        $("#all").attr("disabled", "true");
-        $("#ems").attr("disabled", "true");
-        $("#lae").attr("disabled", "true");
-        $("#bilsa").attr("disabled", "true");
+        if (typeof opt.nempty_func !== "undefined")
+            opt.nempty_func();
+            
         var tokens = search.splitQuoted(" ", "\"");
         var results = [];
         for (var i = 0; i < SECTIONS.length; i ++) {
@@ -41,7 +18,13 @@ function doneTyping() {
                       section.instructor + " " + section.class_no + " " +
                       section.credits + " " + 
                       section.seats + "/" + section.filled + " " +
-                      section._meetsAt().toString();
+                      section._meetsAt().toString() + " ";
+            if (typeof section._meetsAt().mtgDays !== "undefined")
+                str += expandDays(section._meetsAt().mtgDays()).join(" ") + " ";
+            if (typeof section._meetsAt().first !== "undefined")
+                str += expandDays(section._meetsAt().first.mtgDays()).join(" ") + " ";
+            if (typeof section._meetsAt().second !== "undefined")
+                str += expandDays(section._meetsAt().second.mtgDays()).join(" ") + " ";   
             for (var j = 0; j < tokens.length; j ++) {
                 if (tokens[j] !== "\"" && str.toLowerCase().indexOf(tokens[j]) != -1)
                     include = true;
@@ -57,5 +40,6 @@ function doneTyping() {
         results.sort(sectionLessThan);
         WORKING_LIST = results;
     }
-    populateSectionTable();
+    if (typeof opt.done_searching !== "undefined")
+        setTimeout(opt.done_searching, 1);
 }

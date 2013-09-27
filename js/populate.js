@@ -116,7 +116,7 @@ function populate(response) {
     $("#ddown_button").removeAttr("disabled");
     $("#print_button").removeAttr("disabled"); 
     $("#sharebar_btn").removeAttr("disabled");
-    $("#search_box").removeAttr("disabled");
+    $("#search_bar").removeAttr("disabled");
     
     // CRIPPLE THE PROGRAM HERE
     var cripple = false;
