@@ -6,15 +6,15 @@ $(document).ready(function() {
     $("#search_button").click(function() {
         if (search_exposed) {
             $("#search_body").animate({
-                top: -($("#search_body").height())
-            });
+                height: 0
+            }, {done: function(){$("#search_body").addClass("hidden");}});
             search_exposed = false;
             $(document).focus();
         }
         else {
             $("#search_body").animate({
-                top: parseInt($("#menu_bar").height(), 10)
-            });
+                height: 90
+            }, {start: function(){$("#search_body").removeClass("hidden");}});
             search_exposed = true;
             $("#search_bar").focus();
         }

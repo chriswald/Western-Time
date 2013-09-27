@@ -103,6 +103,13 @@ getFile($url, "res/".$filename);
                 <image id="menu_button" class="icon" src="img/menu.png" alt="Drop Down Menu"></image>
             </div>
         </div>
+        <div id="search_body">
+            <div id="search_content">
+                <form action="#">
+                    <input type="text" id="search_bar"></input>
+                </form>
+            </div>
+        </div>
         <div id="menu_body">
             <div id="menu_content">
                 <form action="./mobile.php" id="semester" method="get">
@@ -148,13 +155,6 @@ getFile($url, "res/".$filename);
                     <input id="ems" type="radio" name="college" value="EMS" style="margin-left: 10px"><label for="ems">EMS</label></input>
                     <input id="lae" type="radio" name="college" value="LAE" style="margin-left: 10px"><label for="lae">LAE</label></input>
                     <input id="bilsa" type="radio" name="college" value="BILSA" style="margin-left: 10px"><label for="bilsa">BILSA</label></input>
-                </form>
-            </div>
-        </div>
-        <div id="search_body">
-            <div id="search_content">
-                <form action="#">
-                    <input type="text" id="search_bar"></input>
                 </form>
             </div>
         </div>

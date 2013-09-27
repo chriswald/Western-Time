@@ -7,28 +7,19 @@ $(document).ready(function() {
     }
     
     $("#menu_button").click(function(){
-        $("#menu_body").height($(window).height()-$("#menu_bar").height());
+        //$("#menu_body").height($(window).height()-$("#menu_bar").height());
         if (menu_exposed) {
             $("#menu_body").animate({
-                top: -($("#menu_body").height())
-            });
+                height: 0,
+                display: "none"
+            }, {done: function(){$("#menu_body").addClass("hidden");}});
             menu_exposed = false;
-            
-            $("#section_table_body tr").click(function(){
-                onSelectRow($(this));
-            });
-            
-            $(".extra_content").click(function(){
-                $(this).addClass("hidden");
-            });
         }
         else {
             $("#menu_body").animate({
-                top: parseInt($("#menu_bar").height(), 10)
-            });
+                height: screen.height,
+            }, {start: function(){$("#menu_body").removeClass("hidden");}});
             menu_exposed = true;
-            $("#section_table_body tr").unbind("click");
-            $(".extra_content").unbind("click");
         }
     });
     
