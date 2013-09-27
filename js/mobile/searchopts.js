@@ -3,6 +3,9 @@ var timeout = 200;
 
 $(document).ready(function() {
     var search_exposed = false;
+    $("#search_body").height(0);
+    $("#search_body").addClass("hidden");
+    
     $("#search_button").click(function() {
         if (search_exposed) {
             $("#search_body").animate({

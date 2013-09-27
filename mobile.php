@@ -103,6 +103,7 @@ getFile($url, "res/".$filename);
                 <image id="menu_button" class="icon" src="img/menu.png" alt="Drop Down Menu"></image>
             </div>
         </div>
+        <div id="spacer" style="height: 70px;"></div>
         <div id="search_body">
             <div id="search_content">
                 <form action="#">

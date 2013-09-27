@@ -6,6 +6,9 @@ $(document).ready(function() {
         $(".icon").height("32px");
     }
     
+    $("#menu_body").height(0);
+    $("#menu_body").addClass("hidden");
+    
     $("#menu_button").click(function(){
         //$("#menu_body").height($(window).height()-$("#menu_bar").height());
         if (menu_exposed) {
