@@ -134,30 +134,37 @@ function generateCredits(sec) {
 
 function generateMeetingTimeTable(sec) {
     var text = "<table class='extra_meeting'><tbody>";
-    text += "<tr><td>";
-    if (typeof sec._meetsAt().mtgDays !== "undefined") {
+    
+    //
+    if (typeof sec._meetsAt().mtgDays !== "undefined")
         text += generateMeetingRow(sec._meetsAt());
-    }
-    else if (typeof sec._meetsAt().first !== "undefined") {
-        text += generateMeetingRow(sec._meetsAt().first);
-        text += "</td></tr><tr><td>";
-        text += generateMeetingRow(sec._meetsAt().second);
-    }
     else {
-        text += sec._meetsAt().toStringSansSession();
+        if (typeof sec._meetsAt().first !== "undefined" &&
+            typeof sec._meetsAt().first.mtgDays !== "undefined")
+            text += generateMeetingRow(sec._meetsAt().first);
+        if (typeof sec._meetsAt().second !== "undefined" &&
+            typeof sec._meetsAt().second.mtgDays !== "undefined")
+            text += generateMeetingRow(sec._meetsAt().second);
     }
-    text += "</td></tr>";
+    
+    if (typeof sec._meetsAt().mtgDays === "undefined" &&
+        typeof sec._meetsAt().first === "undefined") {
+        text += "<tr><td>" + sec._meetsAt().toStringSansSession() + "</td></tr>";
+    }
+    //
+    
     text += "</tbody></table>";
     return text;
 }
 
 function generateMeetingRow(meeting) {
-    var text = "";
+    var text = "<tr><td>";
     text += expandDays(meeting.mtgDays()).join("<br/>");
     text += "</td><td>";
     text += meeting.start.toString() + " - " + meeting.end.toString();
     text += "<br/>";
     text += meeting.place;
+    text += "</td></tr>";
     return text;
 }
 
