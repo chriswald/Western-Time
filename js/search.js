@@ -21,9 +21,11 @@ function Search(opt) {
                       section._meetsAt().toString() + " ";
             if (typeof section._meetsAt().mtgDays !== "undefined")
                 str += expandDays(section._meetsAt().mtgDays()).join(" ") + " ";
-            if (typeof section._meetsAt().first !== "undefined")
+            if (typeof section._meetsAt().first !== "undefined" &&
+                typeof section._meetsAt().first.mtgDays !== "undefined")
                 str += expandDays(section._meetsAt().first.mtgDays()).join(" ") + " ";
-            if (typeof section._meetsAt().second !== "undefined")
+            if (typeof section._meetsAt().second !== "undefined" &&
+                typeof section._meetsAt().second.mtgDays !== "undefined")
                 str += expandDays(section._meetsAt().second.mtgDays()).join(" ") + " ";   
             for (var j = 0; j < tokens.length; j ++) {
                 if (tokens[j] !== "\"" && str.toLowerCase().indexOf(tokens[j]) != -1)
