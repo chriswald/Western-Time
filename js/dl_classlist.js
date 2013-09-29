@@ -37,6 +37,7 @@
 //      error. Also gets called on malformatted season or year, or an unsave
 //      directory string.
 function DownloadClassList(season, year, callback, options) {
+    options = options || {};
     // Malformed Season
     if (!/^(Fall|Winter|Spring|Summer)$/.test(season)) {
         if (options.verbose)
@@ -46,7 +47,7 @@ function DownloadClassList(season, year, callback, options) {
         return;
     }
     // Malformed Year
-    if (!/^[12]\d{3}$/.test(year)) {
+    if (!/^(1999|2\d{3})$/.test(year)) {
         if (options.verbose)
             console.log("Malformed year: " + year);
         if (typeof options.error_cb !== "undefined")
@@ -54,7 +55,7 @@ function DownloadClassList(season, year, callback, options) {
         return;
     }
     // Unsafe directory
-    if (/^(\/|~|.*\.\.[\\\/]).*[^\/]$/.test(options.dir)) {
+    if (/^(\/.*|~.*|.*\.\.[\\\/].*|.*[^\/])$/.test(options.dir)) {
         if (options.verbose)
             console.log("Unsafe directory: " + options.dir);
         if (typeof options.error_cb !== "undefined")
@@ -64,7 +65,7 @@ function DownloadClassList(season, year, callback, options) {
     var filename = (options.dir || "res/") + season + year + ".dat";
     
     if (options.verbose)
-        console.log("Making request for '" + filename + "'");
+        window.console.log("Making request for '" + filename + "'");
     
     // Make a request to the web server for the specified dat file.
     $.ajax({

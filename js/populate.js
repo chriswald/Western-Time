@@ -27,7 +27,8 @@ $(document).ready(function() {
         verbose: true,
         success_cb: OnSuccess,
         progress_cb: OnProgress,
-        error_cb: OnError});
+        error_cb: OnError
+    });
 });
 
 var loadTimeout;
@@ -92,7 +93,7 @@ function populate(response) {
     // to the browser in a hidden div element. Only check that div element if
     // FileReader is not supported.
     if (!window.FileReader) {
-        var uploaded_file_contents = $("#uploaded_file_contents").html().trim();
+        var uploaded_file_contents = $("#uploaded_file_contents").html().replace(/^\s/g, "").replace(/\s$/g, "");
         if (uploaded_file_contents !== "")
             ParseFile(uploaded_file_contents);
     }

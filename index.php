@@ -85,6 +85,7 @@ getFile($url, "res/".$filename);
         <meta name="description" content=<?php echo '"' . $TITLE . '"'; ?>>
         <meta name="copyright" content="Copyright (c) 2013 Christopher J. Wald. All rights reserved.">
         <meta charset="UTF-8">
+        <meta name="viewport" content="height=device-height">
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" href="styles/print.css" type="text/css" media="print">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

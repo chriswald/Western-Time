@@ -65,7 +65,7 @@ function Meeting (session_description) {
 }
 
 function makeMeeting(mtg_time_info, session_description) {
-    var mtg = mtg_time_info.trim();
+    var mtg = mtg_time_info.replace(/^\s/g, "").replace(/\s$/g, "");
     if (mtg[0] == "\"")
         mtg = mtg.substr(1);
     if (mtg[mtg.length-1] == "\"")
@@ -169,7 +169,7 @@ function TBAMeeting (session) {
 
 function TBAMeetingWithInfo(information, session_description) {
     var meeting = new TBAMeeting(session_description);
-    information = information.trim();
+    information = information.replace(/^\s/g, "").replace(/\s$/g, "");
     var ret = {
         info: information,
         

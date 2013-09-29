@@ -229,25 +229,25 @@ String.prototype.splitQuoted = function(delim, quote_mark) {
     
     while(i < this.length) {
         prev = i;
-        if (i < this.length && this[i] == quote_mark) {
+        if (i < this.length && this.charAt(i) == quote_mark) {
             ++i;
-            while (i < this.length && this[i] != quote_mark) {
+            while (i < this.length && this.charAt(i) != quote_mark) {
                 ++i;
                 if (i < this.length - 1
-                     && this[i] == quote_mark
-                     && this[i+1] == quote_mark)
+                     && this.charAt(i) == quote_mark
+                     && this.charAt(i+1) == quote_mark)
                     i += 2;
             }
             ++i;
             
-            if (i < this.length && this[i] != delim) {
+            if (i < this.length && this.charAt(i) != delim) {
                 i = prev;
-                while(i < this.length && this[i] != delim)
+                while(i < this.length && this.charAt(i) != delim)
                     i ++;
             }
         }
         else {
-            while(i < this.length && this[i] != delim)
+            while(i < this.length && this.charAt(i) != delim)
                 i++;
         }
         
@@ -256,12 +256,12 @@ String.prototype.splitQuoted = function(delim, quote_mark) {
             next_item = this.substr(prev);
         else
             next_item = this.substr(prev, i-prev);
-        if (next_item.length > 0 && next_item[0] == quote_mark
-             && next_item[next_item.length-1] == quote_mark) {
+        if (next_item.length > 0 && next_item.charAt(0) == quote_mark
+             && next_item.charAt(next_item.length-1) == quote_mark) {
             var tmp = "";
             for (var j = 1; j < next_item.length-1; j++) {
-                tmp += next_item[j];
-                if (next_item[j] == quote_mark)
+                tmp += next_item.charAt(j);
+                if (next_item.charAt(j) == quote_mark)
                     ++j;
             }
             next_item = tmp;
@@ -271,7 +271,7 @@ String.prototype.splitQuoted = function(delim, quote_mark) {
         if (i < this.length)
             i++;
     }
-    if (this.length > 0 && this[this.length-1] == delim)
+    if (this.length > 0 && this.charAt(this.length-1) == delim)
         result.push("");
     return result;
 };
