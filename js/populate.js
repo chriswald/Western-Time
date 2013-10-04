@@ -109,6 +109,7 @@ function populate(response) {
     populateScheduleTable();
     populateWeeklyView();
     fillInPrintForm();
+    populateShareBox();
     
     // These elements are disabled before the Sections are parsed because using
     // them could cause unpredictable results otherwise. Enable them now.
@@ -354,8 +355,8 @@ function populateWeeklyView() {
 
 function populateShareBox() {
     var url = document.URL;
-    var slash = url.indexOf("/", 8);
-    url = url.substring(8,slash);
+    var slash = url.indexOf("//") + 2;
+    url = url.substring(slash, url.indexOf("/", slash));
     $("#share_box").val(url + "/" + getShareLink());
 }
 
