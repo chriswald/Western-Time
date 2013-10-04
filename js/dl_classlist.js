@@ -55,7 +55,7 @@ function DownloadClassList(season, year, callback, options) {
         return;
     }
     // Unsafe directory
-    if (/^(\/.*|~.*|.*\.\.[\\\/].*|.*[^\/])$/.test(options.dir)) {
+    if (/^(\/|~|.*\.\.[\\\/]).*[^\/]$/.test(options.dir)) {
         if (options.verbose)
             console.log("Unsafe directory: " + options.dir);
         if (typeof options.error_cb !== "undefined")
