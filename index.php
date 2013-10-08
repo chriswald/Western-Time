@@ -87,6 +87,7 @@ getFile($url, "res/".$filename);
         <meta charset="UTF-8">
         <meta name="viewport" content="height=device-height">
         <link rel="stylesheet" href="styles/style.css" type="text/css">
+        <link rel="stylesheet" href="styles/button.css" type="text/css">
         <link rel="stylesheet" href="styles/print.css" type="text/css" media="print">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/event.js"></script>
@@ -205,8 +206,7 @@ getFile($url, "res/".$filename);
                         <input id="openfile" class="missing" type="file" name="file"></input>
                         <input id="submitfileupload" class="missing" type="submit" name="submit"></input>
                         <button id="open_button" type="button" disabled>Open Schedule...</button>
-                        <span id="schedule_file_name" style="margin-left: 10px; font: inherit;">No file selected.</span>
-                        <button id="save_button" type="button" value="save" disabled>SAVE</button>
+                        <button id="save_button" type="button" value="save" disabled>Save...</button>
                         <button id="ddown_button" type="button" value="drop" disabled>&#9660;</button>
                         <div id="export_list" class="hidden">
                             <div id="export_ical">Export to ICal</div>
@@ -215,9 +215,9 @@ getFile($url, "res/".$filename);
                     </form>
                 </div>
                 <div id="about_container">
-                    \\<a href="mailto:waldc@uwplatt.edu" target="_blank">Contact</a>
+                    <a href="mailto:waldc@uwplatt.edu" target="_blank">\\Contact</a>
                     <span>&nbsp;&nbsp;</span>
-                    \\<a href="privacy.php" target="_blank">Privacy</a>
+                    <a href="privacy.php" target="_blank">\\Privacy</a>
                 </div>
             </div>
             <div id="sharebar">
@@ -226,6 +226,47 @@ getFile($url, "res/".$filename);
                 <form>
                     <input id="share_box" type="text" placeholder="Add classes to make a shareable link..." readonly></input>
                 </form>
+                <div id="links_container">
+                    <a href="#" 
+                        onclick="
+                            window.open(
+                            'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(document.location.origin + '/' + getShareLink()), 
+                            'facebook-share-dialog', 
+                            'width=626,height=436'); 
+                            return false;">
+                        \\Facebook
+                    </a>
+                    <span>&nbsp;&nbsp;</span>
+                    <a href="#"
+                        onclick="
+                            window.open(
+                            'https://twitter.com/share?url='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
+                            'twitter-share-dialog',
+                            'width=626, height=440');
+                            return false;">
+                        \\Twitter
+                    </a>
+                    <span>&nbsp;&nbsp;</span>
+                    <a href="#"
+                        onclick="
+                            window.open('https://plus.google.com/share?url='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
+                            'google-plus-share-dialog',
+                            'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                            return false;">
+                        \\Google+
+                    </a>
+                    <span>&nbsp;&nbsp;</span>
+                    <a href="#"
+                        onclick="
+                            window.open(
+                            'https://www.pinterest.com/pin/create/button/?url='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
+                            'pinterest-share-dialog',
+                            'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                            return false;">
+                        \\Pinterest
+                    </a>
+                </div>
+                <div style="height:20px;"></div>
             </div>
             <div id="content">
                 <div id="section_list">
