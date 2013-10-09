@@ -131,10 +131,11 @@ getFile($url, "res/".$filename);
                 <div class="navbar">
                     <h1><?php echo $TITLE; ?></h1>
                 </div>
-                <div id="tabs">
-                    <div id="home_tab" class="tab selected">Home</div><div id="print_tab" class="tab">Print</div>
+                <div id="tabs" >
+                    <div id="home_tab" class="tab selected">Home</div>
+                    <div id="print_tab" class="tab">Print</div>
                 </div>
-                <div id="home_pane">
+                <div id="home_pane" style="clear:both">
                     <form action="./" id="semester" method="get">
                         <div id="season">
                             <?php
@@ -314,8 +315,8 @@ getFile($url, "res/".$filename);
                 <div id="information">
                     <form>
                         <button type="button" id="switch_view">Show Weekly View</button>
-                        <button type="button" id="add_section">Add to Schedule</button>
-                        <button type="button" id="rem_section">Remove from Schedule</button>
+                        <button type="button" id="add_section">&#9660; Add to Schedule</button>
+                        <button type="button" id="rem_section">&#9650; Remove from Schedule</button>
                         <span class="label">Approximate Credits:</span>
                         <input id="credits" class="text" type="text" name="credits" readonly></input>
                     </form>

@@ -138,6 +138,9 @@ function populate(response) {
         $("#information").addClass("hidden");
         $("#schedule_list").addClass("hidden");
         $("#weekly_view").addClass("hidden");
+        
+        $("#print_tab").addClass("hidden");
+        $("#home_tab").css("margin-left", "57px");
         SCHEDULE = [];
         populateSectionTable();
         populateScheduleTable();
