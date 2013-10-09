@@ -49,6 +49,7 @@ function onResize() {
     // Minimize the sharebar
     var sharebar_height = $("#sharebar").height();
     $("#sharebar").css("top", -sharebar_height + "px");
+    sharebar_showing = false;
 }
 
 function toggleSidebar()
