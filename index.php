@@ -314,6 +314,8 @@ getFile($url, "res/".$filename);
                 <div id="information">
                     <form>
                         <button type="button" id="switch_view">Show Weekly View</button>
+                        <button type="button" id="add_section">Add to Schedule</button>
+                        <button type="button" id="rem_section">Remove from Schedule</button>
                         <span class="label">Approximate Credits:</span>
                         <input id="credits" class="text" type="text" name="credits" readonly></input>
                     </form>

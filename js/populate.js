@@ -29,6 +29,9 @@ $(document).ready(function() {
         progress_cb: OnProgress,
         error_cb: OnError
     });
+    
+    $("#add_section").click(addSection);
+    $("#rem_section").click(removeSection);
 });
 
 var loadTimeout;
@@ -224,23 +227,13 @@ function populateSectionTable(wlist) {
         $(".conflict_row").addClass("hidden");
     }
     
-    $("#section_body tr").click(function(){
-        $(".sel_row").removeClass("sel_row");
+    $("#section_body tr").click(function(e){
+        if (!e.ctrlKey)
+            $(".sel_row").removeClass("sel_row");
         
         $(this).addClass("sel_row");
     });
-    $("#section_body tr").dblclick(function(){
-        var u = WORKING_LIST[this.rowIndex-1];
-        for (var j = 0; j < SCHEDULE.length; j ++) {
-            if (u.class_no == SCHEDULE[j].class_no)
-                return;
-        }
-        SCHEDULE.push(WORKING_LIST[this.rowIndex-1]);
-        populateScheduleTable();
-        populateSectionTable();
-        populateShareBox();
-        fillInPrintForm();
-    });
+    $("#section_body tr").dblclick(addSection);
 }
 
 function populateScheduleTable() {
@@ -281,17 +274,12 @@ function populateScheduleTable() {
     if (credit_hours_in_doubt)
         $("#credits").val(credits + " +");
     
-    $("#schedule_body tr").click(function(){
-        $(".sel_row").removeClass("sel_row");
+    $("#schedule_body tr").click(function(e){
+        if (!e.ctrlKey)
+            $(".sel_row").removeClass("sel_row");
         $(this).addClass("sel_row");
     });
-    $("#schedule_body tr").dblclick(function(){
-        SCHEDULE.splice(this.rowIndex-1, 1);
-        populateScheduleTable();
-        populateSectionTable();
-        populateShareBox();
-        fillInPrintForm();
-    });
+    $("#schedule_body tr").dblclick(removeSection);
 }
 
 function populateWeeklyView() {
@@ -387,4 +375,39 @@ function checkScheduleForConflicts() {
             }
         }
     }
+}
+
+function addSection() {
+    for (var i = 0; i < $(".section_row.sel_row").length; i ++) {
+        var index = $(".section_row").index($(".sel_row")[i]);
+        if (index === -1) return;
+        var u = WORKING_LIST[index];
+        var can_add = true;
+        for (var j = 0; j < SCHEDULE.length; j ++) {
+            if (u.class_no == SCHEDULE[j].class_no)
+                can_add = false;
+        }
+        if (can_add)
+            SCHEDULE.push(WORKING_LIST[index]);
+    }
+    populateScheduleTable();
+    populateSectionTable();
+    populateShareBox();
+    fillInPrintForm();
+}
+
+function removeSection() {
+    var indices = [];
+    for (var i = 0; i < $(".schedule_row.sel_row").length; i ++) {
+        var index = $(".schedule_row").index($(".sel_row")[i]);
+        indices.push(index);
+    }
+    
+    for (i = indices.length-1; i >= 0; i --)
+        SCHEDULE.splice(indices[i], 1);
+        
+    populateScheduleTable();
+    populateSectionTable();
+    populateShareBox();
+    fillInPrintForm();
 }
