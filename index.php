@@ -265,6 +265,16 @@ getFile($url, "res/".$filename);
                             return false;">
                         \\Pinterest
                     </a>
+                    <span>&nbsp;&nbsp;</span>
+                    <a href="#"
+                        onclick="
+                            window.open(
+                            'mailto:?subject=Class+Schedule&body='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
+                            'email-dialog',
+                            'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                            return false;">
+                        \\Email
+                    </a>
                 </div>
                 <div style="height:20px;"></div>
             </div>
