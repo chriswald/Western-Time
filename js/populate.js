@@ -225,13 +225,9 @@ function populateSectionTable(wlist) {
     }
     
     $("#section_body tr").click(function(){
-        $("#section_body tr").removeClass("sel_row");
-        $("#section_body tr").removeClass("conflict_sel_row");
+        $(".sel_row").removeClass("sel_row");
         
-        if ($(this).hasClass("conflict_row"))
-            $(this).addClass("conflict_sel_row");
-        else
-            $(this).addClass("sel_row");
+        $(this).addClass("sel_row");
     });
     $("#section_body tr").dblclick(function(){
         var u = WORKING_LIST[this.rowIndex-1];
@@ -286,13 +282,8 @@ function populateScheduleTable() {
         $("#credits").val(credits + " +");
     
     $("#schedule_body tr").click(function(){
-        $("#schedule_body tr").removeClass("sel_row");
-        $("#schedule_body tr").removeClass("conflict_sel_row");
-        
-        if ($(this).hasClass("conflict_row"))
-            $(this).addClass("conflict_sel_row");
-        else
-            $(this).addClass("sel_row");
+        $(".sel_row").removeClass("sel_row");
+        $(this).addClass("sel_row");
     });
     $("#schedule_body tr").dblclick(function(){
         SCHEDULE.splice(this.rowIndex-1, 1);
@@ -354,10 +345,9 @@ function populateWeeklyView() {
 }
 
 function populateShareBox() {
-    var url = document.URL;
-    var slash = url.indexOf("//") + 2;
-    url = url.substring(slash, url.indexOf("/", slash));
-    $("#share_box").val(url + "/" + getShareLink());
+    var url = document.location.host;
+    if (getShareLink() !== "")
+        $("#share_box").val(url + "/" + getShareLink());
 }
 
 function checkForConflicts() {
