@@ -133,6 +133,31 @@ tr {
     font-weight: bold;
 }
 
+.tab, .tab:hover, .tab:active {
+    color: black;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    width: 70px;
+    float: left;
+}
+
+.tab {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    transition: border-color 0.2s linear;
+}
+
+.tab.selected {
+    border-bottom-color: rgba(0,0,0,.7);
+}
+
+#tabs {
+    text-align: center;
+    margin-left: 25px;
+}
+
 #sidebar {
     width: 275px;
     padding: 10px;
@@ -338,9 +363,9 @@ button:disabled, .button:disabled {
 
 #print_button {
     height: 30px;
-    width: 100px;
-    margin-right: 5px;
-    margin-left:  5px;
+    width: 100%;
+    padding-right: 5px;
+    padding-left:  5px;
 }
 
 .ts_btn {
@@ -398,6 +423,14 @@ button:disabled, .button:disabled {
     margin-right: 5px;
     margin-left:  5px;
     width: 115px;
+}
+
+#name, #pin {
+    width: 270px;
+}
+
+#name {
+    margin-bottom: 10px;
 }
 
 #credits {

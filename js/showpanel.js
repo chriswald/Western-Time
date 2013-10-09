@@ -10,6 +10,8 @@ $(document).ready(function() {
     // adjusts the content when the user resizes the window.
     onResize();
     $(window).resize(onResize);
+    $("#print_tab").click(showprint);
+    $("#home_tab").click(showhome);
 });
 
 function onResize() {
@@ -82,4 +84,18 @@ function toggleSharebar()
         }, 100);
         sharebar_showing = true;
     }
+}
+
+function showprint() {
+    $("#home_pane").addClass("hidden");
+    $("#home_tab").removeClass("selected");
+    $("#print_pane").removeClass("hidden");
+    $("#print_tab").addClass("selected");
+}
+
+function showhome() {
+    $("#home_pane").removeClass("hidden");
+    $("#home_tab").addClass("selected");
+    $("#print_pane").addClass("hidden");
+    $("#print_tab").removeClass("selected");
 }
