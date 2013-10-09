@@ -17,7 +17,6 @@ String.prototype.endsWith = function(suffix) {
 
 function handleFileLoad(evt)
 {
-    $("#schedule_file_name").html(this.value);
     var files = evt.target.files;
     for (var i = 0; i < files.length; i ++) {
         var f = files[i];
