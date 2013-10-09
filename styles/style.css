@@ -137,7 +137,6 @@ tr {
     width: 275px;
     padding: 10px;
     position: absolute;
-    /*margin-top: 20px;*/
     left: 0;
     background-color: whitesmoke;
     border-top: 1px solid gray;
@@ -146,7 +145,7 @@ tr {
 }
 
 #sharebar {
-    width: 275px;
+    width: 325px;
     padding: 10px;
     position: absolute;
     margin-right: 20px;
@@ -218,8 +217,8 @@ tr {
 }
 
 #share_box {
-    width: 270px;
-    margin-bottom: 20px;
+    width: 320px;
+    margin-bottom: 10px;
 }
 
 #file_container {
@@ -233,9 +232,8 @@ tr {
     color: #3bb2ff;
 }
 
-#open_schedule_list {
-    width: 100%;
-    margin-bottom: 20px;
+#links_container {
+    text-align: center;
 }
 
 #progress_bar {
@@ -271,7 +269,29 @@ a, a:visited {
 }
 
 a:hover {
-    color: #4498d1;
+    color: #136ca6;
+}
+
+button {
+    background-color: #3bb2ff;
+    color: white;
+    border: none;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+}
+
+button:hover {
+    background-color: #136ca6;
+}
+
+button:active {
+    background-color: #5194bf;
+}
+
+button:disabled, .button:disabled {
+    background-color: gray;
 }
 
 #sidebar_btn {
@@ -290,30 +310,6 @@ a:hover {
     height: 20px;
 }
 
-button {
-    background-color: #3bb2ff;
-    color: white;
-    border: none;
-    font: inherit;
-    padding: 0;
-    margin: 0;
-    height: 20px;
-    font-weight: bold;
-}
-
-button:hover {
-    background-color: #136ca6;
-}
-
-button:active {
-    background-color: #5194bf;
-}
-
-button:disabled, .button:disabled {
-    background-color: gray;
-}
-
-
 #term_sel_btns, #reload_btn {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -326,12 +322,6 @@ button:disabled, .button:disabled {
     margin-top: 10px;
 }
 
-#share_button {
-    width: 100%;
-    height: 30px;
-    margin-top: 10px;
-}
-
 #ddown_button {
     width: 20px;
     height: 30px;
@@ -340,6 +330,7 @@ button:disabled, .button:disabled {
 }
 
 #open_button {
+    width: 100%;
     height: 30px;
     padding-left: 5px;
     padding-right: 5px;
@@ -347,7 +338,6 @@ button:disabled, .button:disabled {
 
 #print_button {
     height: 30px;
-    font-weight: bold;
     width: 100px;
     margin-right: 5px;
     margin-left:  5px;
@@ -407,6 +397,11 @@ button:disabled, .button:disabled {
 .text {
     margin-right: 5px;
     margin-left:  5px;
+    width: 115px;
+}
+
+#credits {
+    width: 50px;
 }
 
 .sel_row {
@@ -419,7 +414,7 @@ button:disabled, .button:disabled {
     color: #800000;
 }
 
-.conflict_sel_row {
+.conflict_row.sel_row {
     background-color: #800000;
     color: white;
 }
