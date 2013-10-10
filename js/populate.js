@@ -309,7 +309,9 @@ function populateWeeklyView() {
             for (var j = 0; j < 7; j ++) {
                 var start = sect._meetsAt().mtgHour(j);
                 if (start != -1) {
-                    var desc = sect.program + " " + sect.catalog_no + ":" + sect._meetsAt().mtgPlace(j);
+                    var desc = sect.program + " " + sect.catalog_no;
+                    if ($("#show_loc").is(":checked"))
+                        desc += ":" + sect._meetsAt().mtgPlace(j);
                     var end = sect._meetsAt().mtgEndHour(j);
                     if (start <= end && end != -1) {
                         for (var hour = start; hour <= end; hour ++) {

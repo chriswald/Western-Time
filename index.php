@@ -225,6 +225,14 @@ getFile($url, "res/".$filename);
                         <br/>
                         <input id="pin" type="text" name="pin" placeholder="PIN (Optional)"></input>
                         <hr/>
+                        <input id="show_loc" type="checkbox" name="option" value="show_loc">
+                            <label for="show_loc">Show Locations</label>
+                        </input>
+                        <br/>
+                        <input id="new_student" type="checkbox" name="option" value="new_student">
+                            <label for="new_student">New Student Registration</label>
+                        </input>
+                        <hr/>
                         <button type="button" id="print_button" disabled>Print</button>
                     </form>
                 </div>

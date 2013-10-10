@@ -12,6 +12,7 @@ $(document).ready(function() {
     $(window).resize(onResize);
     $("#print_tab").click(showprint);
     $("#home_tab").click(showhome);
+    $("#show_loc").click(populateWeeklyView);
 });
 
 function onResize() {

@@ -13,6 +13,7 @@
         </tr>
     </table>
     <br/>
+    <div id="new_student_message"></div>
     <!-- Weekly Schedule table -->
     <table id="weekly_table">
     </table>

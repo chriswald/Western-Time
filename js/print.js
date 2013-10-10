@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 function fillInPrintForm() {
     fillInStudentInfo();
+    fillInNewStudentRegistration();
     fillInWeeklyTable();
     fillInScheduleList();
     fillInCredits();
@@ -15,6 +16,15 @@ function fillInPrintForm() {
 function fillInStudentInfo() {
     $("#stud_name").html($("#name").val());
     $("#stud_pin").html($("#pin").val());
+}
+
+function fillInNewStudentRegistration() {
+    if ($("#new_student").is(":checked")) {
+        $("#new_student_message").html(
+            "Use this worksheet to create a schedule and then copy the class information to your registration card.<br/>" + 
+            "BE SURE to get an advisor's signature on this form. Bring both this form AND your card to the registration terminal!"
+            );
+    }
 }
 
 function fillInWeeklyTable() {
