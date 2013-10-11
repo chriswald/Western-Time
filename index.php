@@ -246,7 +246,7 @@ getFile($url, "res/".$filename);
                 <button type="button" id="sharebar_btn" onclick="toggleSharebar()" disabled>&middot;&middot;&middot;</button>
                 <div class="navbar"><h1>Share</h1></div>
                 <form>
-                    <input id="share_box" type="text" placeholder="Add classes to make a shareable link..." readonly></input>
+                    <input id="share_box" type="text" placeholder="Add classes to make a shareable link..." onclick="this.select()" readonly></input>
                 </form>
                 <div id="links_container">
                     <a href="#" 
