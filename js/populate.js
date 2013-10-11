@@ -2,6 +2,7 @@ var season, year;
 var ems_prog = [], lae_prog = [], bilsa_prog = [], other_prog = [];
 var WORKING_LIST = [];
 var SCHEDULE = [];
+var metaKey = false;
 
 function get_season_value() {
     return $("input[name=season]:checked").val();
@@ -230,11 +231,9 @@ function populateSectionTable(wlist) {
         $(".conflict_row").addClass("hidden");
     }
     
+    var last_selected;
     $("#section_body tr").click(function(e){
-        if (!e.ctrlKey)
-            $(".sel_row").removeClass("sel_row");
-        
-        $(this).addClass("sel_row");
+        last_selected = multiSelect(this, ".section_row", last_selected, e);
     });
     $("#section_body tr").dblclick(addSection);
 }
@@ -277,10 +276,9 @@ function populateScheduleTable() {
     if (credit_hours_in_doubt)
         $("#credits").val(credits + " +");
     
+    var last_selected;
     $("#schedule_body tr").click(function(e){
-        if (!e.ctrlKey)
-            $(".sel_row").removeClass("sel_row");
-        $(this).addClass("sel_row");
+        last_selected = multiSelect(this, ".schedule_row", last_selected, e);
     });
     $("#schedule_body tr").dblclick(removeSection);
 }
@@ -341,6 +339,47 @@ function populateShareBox() {
     var url = document.location.host;
     if (getShareLink() !== "")
         $("#share_box").val(url + "/" + getShareLink());
+    else
+        $("#share_box").val("");
+}
+
+function multiSelect(that, rowClass, last_selected, e) {
+    e.ctrlKey = (e.ctrlKey || e.metaKey);
+    if (!e.ctrlKey)
+        $(".sel_row").removeClass("sel_row");
+    
+    if (typeof last_selected !== "undefined") {
+        var index, min, max, i;
+        if (e.shiftKey && !e.ctrlKey) {
+            index = $(rowClass).index(that);
+            min = index < last_selected ? index : last_selected;
+            max = index < last_selected ? last_selected : index;
+            
+            for (i = min; i <= max; i ++) {
+                $(rowClass + ":eq(" + i + ")").addClass("sel_row");
+            }
+        }
+        
+        if (e.shiftKey && e.ctrlKey) {
+            index = $(rowClass).index(that);
+            min = index < last_selected ? index : last_selected+1;
+            max = index < last_selected ? last_selected-1 : index;
+            
+            for (i = min; i <= max; i ++) {
+                $(rowClass + ":eq(" + i + ")").toggleClass("sel_row");
+            }
+        }
+    }
+    
+    if (!e.shiftKey) {
+        if (e.ctrlKey)
+            $(that).toggleClass("sel_row");
+        else
+            $(that).addClass("sel_row");
+    }
+
+    last_selected = $(rowClass).index(that);
+    return last_selected;
 }
 
 function checkForConflicts() {
