@@ -436,6 +436,11 @@ function addSection() {
             HISTORY.exec(cmd);
         }
     }
+    
+    populateScheduleTable();
+    populateSectionTable();
+    populateShareBox();
+    fillInPrintForm();
 }
 
 function removeSection() {
@@ -449,4 +454,9 @@ function removeSection() {
         var cmd = new RemCommand(SCHEDULE[indices[i]]);
         HISTORY.exec(cmd);
     }
+    
+    populateScheduleTable();
+    populateSectionTable();
+    populateShareBox();
+    fillInPrintForm();
 }
