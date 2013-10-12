@@ -261,6 +261,10 @@ tr {
     text-align: center;
 }
 
+#undoredo {
+    width: 200px;
+}
+
 #progress_bar {
     width: 200px;
     height: 30px;

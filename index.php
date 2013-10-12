@@ -328,6 +328,7 @@ getFile($url, "res/".$filename);
                         <button type="button" id="rem_section">&#9650; Remove from Schedule</button>
                         <span class="label">Approximate Credits:</span>
                         <input id="credits" class="text" type="text" name="credits" readonly></input>
+                        <select id="undoredo"></select>
                     </form>
                 </div>
                 <div id="schedule_list">
