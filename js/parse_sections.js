@@ -1,5 +1,16 @@
+// FILE:    meeting.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Parses the content of a class list into section classes.
+//
+// KNOWN DEPENDENCIES:
+//          section.js
+
+// List of sections.
 var SECTIONS = [];
 
+// Makes a Section out of each line of the class list.
 function ParseSections(response) {
     console.log("Populating...");
     var lines = response.split("\n");

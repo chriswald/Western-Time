@@ -1,3 +1,14 @@
+// FILE:    nav_buttons.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Handles changing semester with the navigation buttons,
+//          radio buttons, year dropdown, and reload button.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php
+
+// Hooks up events.
 $(document).ready(function() {
     $("#psem").click(prev_sem);
     $("#pterm").click(prev_term);
@@ -5,6 +16,8 @@ $(document).ready(function() {
     $("#nsem").click(next_sem);
 });
 
+// Selects the previous fall or spring semester, changing year as
+// required.
 function prev_sem()
 {
     if ($("#Fall").is(":checked") || $("#Summer").is(":checked"))
@@ -21,6 +34,7 @@ function prev_sem()
     }
 }
 
+// Selects the previous term, changing year as required.
 function prev_term()
 {
     if ($("#Fall").is(":checked"))
@@ -41,6 +55,7 @@ function prev_term()
     }
 }
 
+// Selects the next term, changing year as required.
 function next_term()
 {
     if ($("#Winter").is(":checked"))
@@ -61,6 +76,8 @@ function next_term()
     }
 }
 
+// Selects the next fall or spring semester, changing year as
+// required.
 function next_sem()
 {
     if ($("#Spring").is(":checked") || $("#Summer").is(":checked"))

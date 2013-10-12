@@ -1,9 +1,25 @@
+// FILE:    file.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Handles saving the user's schedule as .sch, .ics, and
+//          .csv. Allows the user to open schedule files.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php, save.php
+
+// Hooks up events.
 $(document).ready(function() {
     $("#open_button").click(function() {$("#openfile").click();});
+    // If the browser supports FileReader then we can use that. If
+    // not the file needs to be uploaded to the server, which means
+    // that it gets read by php and the text gets inserted into the
+    // returned html.
     if (window.FileReader)
         $("#openfile").change(handleFileLoad);
     else
         $("#openfile").change(function() { $("#submitfileupload").click(); });
+    
     $("#save_button").click(saveFile);
     $("#ddown_button").click(toggleDrop);
     $("#export_ical").click(exportICAL);
@@ -11,10 +27,13 @@ $(document).ready(function() {
     $("html").click(function() {$("#export_list").addClass("hidden");});
 });
 
+// Adds a function to String to check if a string ends with a suffix.
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
+// Called when a file is uploaded and FileReader is available. Checks
+// for validity and sends to the parser.
 function handleFileLoad(evt)
 {
     var files = evt.target.files;
@@ -34,11 +53,15 @@ function handleFileLoad(evt)
     }
 }
 
+// Gets the contens of the file and sends to the parser.
 function ReadFileContents(e) {
     var contents = e.target.result;
     ParseFile(contents);
 }
 
+// Parses a schedule file's contents for a name and pin, and tries to
+// match the sections found with those available in SECTIONS and add
+// them to SCHEDULE.
 function ParseFile(e) {
     var lines = e.split("\n");
     $("#name").val(lines[0]);
@@ -74,6 +97,7 @@ function ParseFile(e) {
     fillInPrintForm();
 }
 
+// Generates the contents of a schedule file and sends it for saving.
 function saveFile() {
     var filename = get_season_value() + get_year_value() + ".sch";
     var content = $("#name").val() + "\n";
@@ -83,17 +107,22 @@ function saveFile() {
     sendFileForSave(filename, content);
 }
 
+// Sends file contents to the server to be made available for user
+// download.
 function sendFileForSave(filename, fileContents) {
     var fcontent = btoa(filename + "\n" + fileContents);
     $("#contents").val(fcontent);
     $("#submit").click();
 }
 
+// Toggles the "extra save options" dropdown.
 function toggleDrop(event) {
     $("#export_list").toggleClass("hidden");
     event.stopPropagation();
 }
 
+// Creates an iCal file out of the user's schedule and sends it to
+// the server to be made available for download.
 function exportICAL() {
     var filename = get_season_value() + get_year_value() + ".ics";
     var content = "";
@@ -123,6 +152,8 @@ function exportICAL() {
     });
 }
 
+// Creates a comma seperated values file out of the user's schedule
+// and sends it to the server to be made available for download.
 function exportCSV() {
     var filename = get_season_value() + get_year_value() + ".csv";
     var date = new Date();

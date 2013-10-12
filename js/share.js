@@ -1,3 +1,23 @@
+// FILE:    decode.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Methods for generating a link to a schedule and
+//          decrypting a URL for parsing as a schedule.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php, populate.js, section.js
+
+// Decodes a portion of a URL for year and season info and builds a
+// schedule out of the the information it gets. The URL fragment
+// should follow these rules:
+//  1) The fragment should be base64 encoded.
+//  2) The fragment should follow the first / after the domain name.
+//  3) Before base64 encoding the fragment should follow this form:
+//     <season><year><class_no[0]><class_no[1]>...<class_no[n]>
+//     were season matches /(Spring|Summer|Fall|Winter)/, year is a
+//     4 digit number >= 1999, and class_no[k] is a 4 digit class_no
+//     for a section.
 function decodeURL() {
     var url = document.URL;
     while (url.indexOf("/") !== -1)
@@ -36,6 +56,9 @@ function decodeURL() {
     $("#switch_view").click();
 }
 
+// Builds a base64 encoded fragment out of the user's schedule if
+// the schedule's length >0. See comments above for rules on building
+// the fragment.
 function getShareLink() {
     if (SCHEDULE.length === 0)
         return "";

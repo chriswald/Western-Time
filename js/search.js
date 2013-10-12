@@ -1,3 +1,19 @@
+// FILE:    search.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Searches WORKING_LIST.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php, section.js
+
+// Searches every section in SECTIONS. The phrase in the search box
+// is broken into word tokens and each token is searched for
+// independent of order.
+// opt is a structure of arguments:
+//  opt.empty_func: called when the search box is empty.
+//  opt.nempty_func: called when the search box isn't empty.
+//  opt.done_searching: called when the search concludes.
 function Search(opt) {
     var search = $("#search_bar").val().toLowerCase();
     if (search.length === 0) {

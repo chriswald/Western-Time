@@ -1,13 +1,25 @@
+// FILE:    showpanel.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Contains methods pertaining to resizing the display and
+//          moving the sidebar and sharebar.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php
+
+// Track whether the sidebar is visible
 var sidebar_showing = true;
+// Track whether the sharebar is visible
 var sharebar_showing = false;
+// Track whether the display is small
 var small = false;
-var sidebar_int;
-var sharebar_int;
 
 $(document).ready(function() {
     sidebar_showing = true; // Should be true for release
-    // Do the initial sizing on page load, then set up an event listener that
-    // adjusts the content when the user resizes the window.
+    // Do the initial sizing on page load, then set up an event
+    // listener that adjusts the content when the user resizes the
+    // window.
     onResize();
     $(window).resize(onResize);
     $("#print_tab").click(showprint);
@@ -15,10 +27,13 @@ $(document).ready(function() {
     $("#show_loc").click(populateWeeklyView);
 });
 
+// Handle the repositioning of elements as the user resizes the
+// display.
 function onResize() {
     var width = $(window).width();
     var height = $(window).height();
-    // Set a minimum height. This should be about the height of the sidebar.
+    // Set a minimum height. This should be about the height of the
+    // sidebar.
     if (height < 500) height = 500;
     
     if (width < 1280) {
@@ -40,8 +55,8 @@ function onResize() {
         $("#content").css("margin-left", $("#sidebar").width() + 20);
     }
     
-    // The height of the (minimized) sharebar and padding on either end of
-    // #content.
+    // The height of the (minimized) sharebar and padding on either
+    // end of #content.
     var stuff_around_content = 40; //px.
     $("#content").height((height-stuff_around_content) + "px");
     
@@ -55,6 +70,7 @@ function onResize() {
     sharebar_showing = false;
 }
 
+// Toggles whether the sidebar is showing.
 function toggleSidebar()
 {
     if (sidebar_showing) {
@@ -71,6 +87,7 @@ function toggleSidebar()
     }
 }
 
+// Toggles whether the sharebar is showing.
 function toggleSharebar()
 {
     if (sharebar_showing) {
@@ -87,6 +104,7 @@ function toggleSharebar()
     }
 }
 
+// Shows the print controls.
 function showprint() {
     $("#home_pane").addClass("hidden");
     $("#home_tab").removeClass("selected");
@@ -94,6 +112,7 @@ function showprint() {
     $("#print_tab").addClass("selected");
 }
 
+// Shows the general controls.
 function showhome() {
     $("#home_pane").removeClass("hidden");
     $("#home_tab").addClass("selected");

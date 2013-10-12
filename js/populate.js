@@ -1,17 +1,36 @@
-var season, year;
-var ems_prog = [], lae_prog = [], bilsa_prog = [], other_prog = [];
-var WORKING_LIST = [];
-var SCHEDULE = [];
-var metaKey = false;
+// FILE:    populate.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Handles the main graphical area (eg the section table,
+//          info bar, and schedule table).
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php, meeting.js, section.js, share.js,
+//          history.js, dl_classlist.js, parse_sections.js
 
+// Arrays to hold the names of the programs that belong to each
+// college.
+var ems_prog = [], lae_prog = [], bilsa_prog = [], other_prog = [];
+
+// Array to hold the Sections that are currently being displayed in
+// the section list.
+var WORKING_LIST = [];
+
+// The user's schedule.
+var SCHEDULE = [];
+
+// Gets the selected season name from the radio buttons.
 function get_season_value() {
     return $("input[name=season]:checked").val();
 }
 
+// Gets the selected year value from the dropdown.
 function get_year_value() {
     return $("#year").find(":selected").text();
 }
 
+// Gets the selected program name from the dropdown.
 function get_program_value() {
     var e = document.getElementById("program");
     if (e.selectedIndex < 0)
@@ -21,9 +40,10 @@ function get_program_value() {
 }
 
 $(document).ready(function() {
-    // Grab the year and season specified on the page (as opposed to in the url)
-    year = get_year_value();
-    season = get_season_value();
+    // Grab the year and season specified on the page (as opposed to
+    // in the url)
+    var year = get_year_value();
+    var season = get_season_value();
     DownloadClassList(season, year, populate, {
         verbose: true,
         success_cb: OnSuccess,
@@ -31,27 +51,36 @@ $(document).ready(function() {
         error_cb: OnError
     });
     
+    // Hook up the Add and Remove buttons to their handlers.
     $("#add_section").click(addSection);
     $("#rem_section").click(removeSection);
 });
 
-var loadTimeout;
-var loadTimeout_called = false;
+// Timeout variables connected to how long the class list download
+// has been processing. If the timeout has been triggered show the
+// download progress bar.
+var loadTimer;
+var loadTimer_called = false;
+var loadTimeout = 500; //ms
 
+// The class list download was successful. Clear the timeout and hide
+// the download progress bar.
 function OnSuccess() {
-    clearTimeout(loadTimeout);
+    clearTimeout(loadTimer);
     $("#progress_bar").addClass("hidden");
 }
 
+// Track the progress of the class list download. If it has been more
+// than loadTimeout and is less than 80% done show the progress bar.
 function OnProgress(evt) {
     if (evt.lengthComputable) {
         var percent = parseInt( (evt.loaded / evt.total * 100), 10);
-        if (!loadTimeout_called) {
-            loadTimeout = setTimeout(function() {
+        if (!loadTimer_called) {
+            loadTimer = setTimeout(function() {
                 if (percent < 80)
                     $("#progress_bar").removeClass("hidden");
-            }, 500);
-            loadTimeout_called = true;
+            }, loadTimeout);
+            loadTimer_called = true;
         }
         $("#progress").width(percent + "%");
     }
@@ -60,8 +89,10 @@ function OnProgress(evt) {
     }
 }
 
+// Called when the download encounters an error. Clears the timeout
+// and shows the progress bar with an error message.
 function OnError() {
-    clearTimeout(loadTimeout);
+    clearTimeout(loadTimer);
     $("#progress_bar").removeClass("hidden");
     $("#progress").width("100%");
     $("#progress").css("background-color", "#e60000");
@@ -70,6 +101,11 @@ function OnError() {
     $("#progress_error").removeClass("hidden");
 }
 
+// Does the initial setup for many different portions of the program.
+// Parses the downloaded class list information into sections,
+// parses the program names into appropriate colleges, opens files as
+// appropriate, and enables elements that are turned off during the
+// download for safety.
 function populate(response) {
     ParseSections(response);
     
@@ -152,6 +188,8 @@ function populate(response) {
     console.log("...Done");
 }
 
+// Fills the program dropdown with programs from the college selected
+// in the radio buttons.
 function populateProgramCombo() {
     $("#program").html("");
     var programs = [];
@@ -192,7 +230,10 @@ function getProgramSections() {
     WORKING_LIST = sections.sort(sectionLessThan);
 }
 
-function populateSectionTable(wlist) {
+// Adds a row to the section table for every section in the working
+// list, WORKING_LIST. Hooks up those rows with their event
+// handlers.
+function populateSectionTable() {
     $("#section_body").html("");
     for (var i = 0; i < WORKING_LIST.length; i ++) {
         var text = "";
@@ -238,6 +279,8 @@ function populateSectionTable(wlist) {
     $("#section_body tr").dblclick(addSection);
 }
 
+// Adds a row to the section table for every section in the user's
+// schedule, SCHEDULE. Hooks up those rows with their event handlers.
 function populateScheduleTable() {
     $("#schedule_body").html("");
     
@@ -283,6 +326,8 @@ function populateScheduleTable() {
     $("#schedule_body tr").dblclick(removeSection);
 }
 
+// Fills a table with the classes from the user's schedule so the
+// user can see when each class meets.
 function populateWeeklyView() {
     $("#weekly_view_body").html("");
     var html = "";
@@ -335,6 +380,8 @@ function populateWeeklyView() {
     }
 }
 
+// Put the generated link in the share box if the user has any
+// classes in SCHEDULE.
 function populateShareBox() {
     var url = document.location.host;
     if (getShareLink() !== "")
@@ -343,6 +390,8 @@ function populateShareBox() {
         $("#share_box").val("");
 }
 
+// Allows selecting multiple sections at once with click, ctrl-click,
+// shift-click, and ctrl-shift-click.
 function multiSelect(that, rowClass, last_selected, e) {
     e.ctrlKey = (e.ctrlKey || e.metaKey);
     if (!e.ctrlKey)
@@ -382,11 +431,15 @@ function multiSelect(that, rowClass, last_selected, e) {
     return last_selected;
 }
 
+// Checks all sections for conflicts with the user's schedule, and
+// checks the user's schedule for any sections that conflict with
+// each other.
 function checkForConflicts() {
     checkSectionsForConflicts();
     checkScheduleForConflicts();
 }
 
+// Checks WORKING_LIST for conflicts with the user's schedule.
 function checkSectionsForConflicts() {
     $("#section_list tr").removeClass("conflict_row");
     for (var i = 0; i < SCHEDULE.length; i ++) {
@@ -403,6 +456,8 @@ function checkSectionsForConflicts() {
     }
 }
 
+// Checks the user's schedule for sections that conflict with any
+// other sections in the schedule.
 function checkScheduleForConflicts() {
     $("#schedule_list tr").removeClass("conflict_row");
     $("#conflict_label").removeClass("conflict_show");
@@ -421,6 +476,8 @@ function checkScheduleForConflicts() {
     }
 }
 
+// Adds one or more sections to the user's schedule based on rows
+// in the section table that are selected.
 function addSection() {
     for (var i = 0; i < $(".section_row.sel_row").length; i ++) {
         var index = $(".section_row").index($(".sel_row")[i]);
@@ -443,6 +500,8 @@ function addSection() {
     fillInPrintForm();
 }
 
+// Removes one or more sections from the user's schedule based on
+// rows in the schedule table that are selected.
 function removeSection() {
     var indices = [];
     for (var i = 0; i < $(".schedule_row.sel_row").length; i ++) {

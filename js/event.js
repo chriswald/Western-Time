@@ -1,11 +1,30 @@
+// FILE:    event.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Contains methods for the creation of iCal files from a
+//          user's schedule.
+//
+// KNOWN DEPENDENCIES:
+//
+
+// Short names for each month.
 var month_names = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 
+// _Date Class
+// (The underscore is required to aviod conflicts with jQuery)
+// Represents a date and provides functions for integrating with the
+// iCal specification (RFC 2445).
 function _Date(_month, _day, _year) {
     return {
+        // Integer month (0...11)
         month: parseInt(_month, 10),
+        // Integer day (0...30)
         day:   parseInt(_day, 10),
+        // Integer year (/\d{4}/)
         year:  parseInt(_year, 10),
         
+        // Returns the day of the year that a date is.
         doy: function() {
             var yd = 0;
             for(var m = 1; m < this.month; ++m)
@@ -14,6 +33,9 @@ function _Date(_month, _day, _year) {
             return yd;
         },
         
+        // Returns the day of the week that a specified date is. Year
+        // must be 2000 or later. Do not confuse with the destinction
+        // between weekend and weekday.
         weekday: function() {
             // Works for year >= 2000
             // from http://www.gregmiller.net/astro/dow.html
@@ -32,6 +54,7 @@ function _Date(_month, _day, _year) {
                 return daynum - 1;
         },
         
+        // Walks forward to a new date a certain number of days.
         addDays: function(days) {
             for(var d = 0; d < days; ++d) {
                 this.day++;
@@ -46,14 +69,20 @@ function _Date(_month, _day, _year) {
             }
         },
         
+        // Returns this date in iCal format.
         toICal: function() {
-            return "" + this.year + (this.month<10?"0"+this.month:""+this.month) + (this.day<10?"0"+this.day:""+this.day);
+            return "" + this.year
+                    + (this.month<10?"0"+this.month:""+this.month)
+                    + (this.day<10?"0"+this.day:""+this.day);
         },
         
+        // Returns a string representation of this date.
         toString: function() {
-            return month_names[this.month+1] + " " + this.day + ", " + this.year;
+            return month_names[this.month+1] + " "
+                    + this.day + ", " + this.year;
         },
         
+        // Returns true if this date occurred before some other date.
         lessThan: function(other) {
             if ( this.year < other.year )
                 return true;
@@ -73,6 +102,7 @@ function _Date(_month, _day, _year) {
             return false;
         },
         
+        // Returns the number of days in a month.
         daysInMonth: function(m, y) {
             switch (m) {
                 case 1:
@@ -97,6 +127,8 @@ function _Date(_month, _day, _year) {
             }
         },
         
+        // Returns the number of a month given its short name.
+        // See month_names.
         month_num: function(m) {
             var lower_month = m.toLowerCase();
             for(var i = 0; i < 12; i++)
@@ -106,12 +138,18 @@ function _Date(_month, _day, _year) {
     };
 }
 
+// EventGenerator Class
+// Generates an iCal event over (startDate ... endDate).
 function EventGenerator(startDate, endDate) {
     endDate.addDays(1);
     return {
+        // Start date of the semester.
         semester_start: startDate,
+        // End date of the semester.
         semester_end:   endDate,
         
+        // Returns a string listing the days that are included in the
+        // event.
         icalDays: function(day_included) {
             var result = "";
             if (day_included[Day.Sunday])
@@ -133,6 +171,7 @@ function EventGenerator(startDate, endDate) {
             return result;
         },
         
+        // Generate the content of the event.
         eventFor: function(description, location, note, start_time, end_time, day_included) {
             var first_meeting = $.extend(true, {}, this.semester_start);
             for (var i = 0; i < 7 && !day_included[first_meeting.weekday()]; i++) {
@@ -164,6 +203,7 @@ function EventGenerator(startDate, endDate) {
             return preamble + rule + summary + loc + descr + start + end + post;
         },
         
+        // Returns the boilerplate text to start a calendar.
         preamble: function() {
             var pre =
                 "BEGIN:VCALENDAR\n" +
@@ -186,6 +226,7 @@ function EventGenerator(startDate, endDate) {
             return pre;
         },
         
+        // Returns the boilerplate text to end a calendar.
         postlude: function() {
             return "END:VCALENDAR\n";
         }

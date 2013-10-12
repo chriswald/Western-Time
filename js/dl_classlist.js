@@ -1,3 +1,15 @@
+// FILE:    dl_classlist.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Methods for downloading a class list file from the
+//          server.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery
+
+// Adds a function to jQuery XHR requests to track their download
+// progress.
 (function addXhrProgressEvent($) {
     var originalXhr = $.ajaxSettings.xhr;
     $.ajaxSetup({

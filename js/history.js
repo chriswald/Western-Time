@@ -1,11 +1,24 @@
+// FILE:    history.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Provides unlimited undo/redo functionality.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php, populate.js, section.js
+
+// Contains the undo/redo history.
 var HISTORY = new History();
 
+// Links up events to their handlers. Does some initial setup.
 $(document).ready(function() {
     $("html").keydown(UndoRedo);
     $("#undoredo").change(HISTORY.change);
     HISTORY.populate();
 });
 
+// Listens for ctrl-Z or ctrl-Y and executes an undo or redo
+// respectivly.
 function UndoRedo(e) {
     e.ctrlKey = (e.ctrlKey || e.metaKey);
     if (e.ctrlKey) {
@@ -28,12 +41,19 @@ function UndoRedo(e) {
     }
 }
 
+// History Class.
+// Holds stacks for undo and redo commands.
 function History() {
     return {
+        // Stack of undo commands.
         undo_stack: [],
+        // Stack of redo commands.
         redo_stack: [],
+        // The default phrase for the undo/redo dropdown.
         default_phrase: "Undo/Redo",
         
+        // Execute a command and push it to the undo stack. Also
+        // clears the redo stack.
         exec: function(cmd) {
             cmd.redo();
             this.undo_stack.push(cmd);
@@ -41,6 +61,8 @@ function History() {
             this.populate();
         },
         
+        // Undoes the command on the top of the undo stack and pushes
+        // it onto the redo stack.
         undo: function() {
             if (this.undo_stack.length === 0)
                 return;
@@ -50,6 +72,8 @@ function History() {
             this.populate();
         },
         
+        // Redoes the command on the top of the redo stack and pushes
+        // it onto the undo stack.
         redo: function() {
             if (this.redo_stack.length === 0)
                 return;
@@ -59,6 +83,8 @@ function History() {
             this.populate();
         },
         
+        // Generates a list of command descriptions to be put into
+        // the history dropdown box.
         list: function() {
             var list = [], i = 0;
             for (i = 0; i < this.redo_stack.length; i ++) {
@@ -71,6 +97,7 @@ function History() {
             return list;
         },
         
+        // Fills the history dropdown box.
         populate: function() {
             var list = this.list();
             var str = "";
@@ -83,6 +110,8 @@ function History() {
             $("#undoredo").html(str);
         },
         
+        // When the user selects a command from the history dropdown
+        // box, this undoes or redoes the proper number of commands.
         change: function() {
             var e = document.getElementById("undoredo");
             if (e.selectedIndex < 0)
@@ -104,6 +133,8 @@ function History() {
     };
 }
 
+// AddCommand Class
+// Represents a section being added to the user's schedule.
 function AddCommand(sec) {
     var desc = "";
     if (typeof sec.length === "undefined")
@@ -112,11 +143,17 @@ function AddCommand(sec) {
         desc = "Adding multiple sections";
         
     return {
+        // The section being delt with.
         section: sec,
+        // A description of the command.
         description: desc,
+        
+        // Adds the section to the user's schedule.
         redo: function() {
             SCHEDULE.push(this.section);
         },
+        
+        // Remove the section from the user's schedule.
         undo: function() {
             for (var i = SCHEDULE.length-1; i >= 0; i --) {
                 if (SCHEDULE[i] == this.section)
@@ -126,6 +163,8 @@ function AddCommand(sec) {
     };
 }
 
+// RemCommand Class
+// Represents a section being removed from the user's schedule.
 function RemCommand(sec) {
     var desc = "";
     if (typeof sec.length === "undefined")
@@ -134,14 +173,20 @@ function RemCommand(sec) {
         desc = "Removing multiple sections";
     
     return {
+        // The section being delt with.
         section: sec,
+        // A description of the command.
         description: desc,
+        
+        // Removes the section from the user's schedule.
         redo: function() {
             for (var i = SCHEDULE.length-1; i >= 0; i --) {
                 if (SCHEDULE[i] == this.section)
                     SCHEDULE.splice(i, 1);
             }
         },
+        
+        // Adds the section to the user's schedule.
         undo: function() {
             SCHEDULE.push(this.section);
         }

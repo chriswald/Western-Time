@@ -1,3 +1,13 @@
+// FILE:    print.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Handles all printing (on dead trees) routines.
+//
+// KNOWN DEPENDENCIES:
+//          jQuery, index.php, section.js
+
+// Hooks up event handlers.
 $(document).ready(function() {
     $("#print_button").click(function(){
         fillInPrintForm();
@@ -5,6 +15,7 @@ $(document).ready(function() {
     });
 });
 
+// Fill in the print form with all the required information.
 function fillInPrintForm() {
     fillInStudentInfo();
     fillInNewStudentRegistration();
@@ -13,11 +24,14 @@ function fillInPrintForm() {
     fillInCredits();
 }
 
+// Get the student name and pin from the input boxes and copy them.
 function fillInStudentInfo() {
     $("#stud_name").html($("#name").val());
     $("#stud_pin").html($("#pin").val());
 }
 
+// If this is to be used for new student registration print a message
+// near the top of the form.
 function fillInNewStudentRegistration() {
     if ($("#new_student").is(":checked")) {
         $("#new_student_message").html(
@@ -27,10 +41,12 @@ function fillInNewStudentRegistration() {
     }
 }
 
+// Copy the weekly view table to the document.
 function fillInWeeklyTable() {
     $("#weekly_table").html($("#weekly_view").html());
 }
 
+// Fill out a table with the desired info from the user's schedule.
 function fillInScheduleList() {
     var output = "";
     for (var i = 0; i < SCHEDULE.length; i ++) {
@@ -48,6 +64,7 @@ function fillInScheduleList() {
     $("#schedule_list_body").html(output);
 }
 
+// Copy the number of credits to the document.
 function fillInCredits() {
     $("#total_credits").html("Total Credits: " + $("#credits").val());
 }

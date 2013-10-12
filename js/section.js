@@ -1,4 +1,16 @@
+// FILE:    section.js
+// AUTHOR:  Christopher J. Wald
+// DATE:    Oct 12, 2013
+//
+// DESC:    Contains classes for representing class sections.
+//
+// KNOWN DEPENDENCIES:
+//          meeting.js
+
+// Message to display when the number of credits isn't known.
 var SEE_PASS = "See<br/>PASS";
+
+// List of potential sessions.
 var session_pool = [
     new Session("1", 1, 1, 1.0),
     new Session("8W1", 8, 1, 0.5),
@@ -9,13 +21,21 @@ var session_pool = [
     new Session("POST", 1, 2, 0.20)
 ];
 
+// Session Class
+// A session has a name and gives information about when a section
+// starts withing a semester and how long it runs for.
 function Session (session_descriptor, weeks, id, portion) {
     return {
+        // The name of the session.
         descriptor: session_descriptor,
+        // How many weeks the session lasts for.
         weeks_in_session: weeks,
+        // When the session starts.
         session_id: id,
+        // What portion of the term the session lasts for.
         portion_of_term: portion,
         
+        // Checks whether this session overlaps with another session.
         conflictsWith: function(other) {
             if (this == other)
                 return true;
@@ -31,6 +51,7 @@ function Session (session_descriptor, weeks, id, portion) {
                 return true;
         },
         
+        // Returns this session as a string.
         toString: function() {
             if (this.weeks_in_session == 1) {
                 if (this.session_id === 0)
@@ -126,7 +147,7 @@ function Section(src, class_list_version) {
             session: tokens[6],
             ugrad: (tokens[7] == "UGRAD"),
             title: tokens[8],
-            class_no: parseInt(tokens[9], 10),
+            class_no: parseInt(tokens[9], 10), // this is unique within a semester.
             seats: parseInt(tokens[10], 10),
             filled: parseInt(tokens[11], 10),
             instructor: (tokens[12] === "" ? "TBA" : tokens[12]),
@@ -136,11 +157,15 @@ function Section(src, class_list_version) {
         };
     }
     
+    // Why did I call this res?
     var res = {
+        // Sets credits to zero.
         suppressCredits: function () {
             this.credits = 0;
         },
         
+        // Returns this section as a string. Used for saving a
+        // schedule.
         toString: function() {
             return this.program + " " + this.catalog_no + " " + this.section + " " + this.title
                 + " " + this.instructor + " " + this.filled + "/" + this.seats
@@ -148,6 +173,7 @@ function Section(src, class_list_version) {
                 + this._meetsAt().toString();
         },
         
+        // Returns this's meeting.
         _meetsAt: function () {
             if (typeof this.meetsAt === "undefined") {
                 this.meetsAt = new TBAMeeting("");
@@ -155,6 +181,8 @@ function Section(src, class_list_version) {
             return this.meetsAt;
         },
         
+        // Determines whether the number of credits that this section
+        // has can reliably be regarded to be true.
         creditHoursInDoubt: function() {
             if (this.credits != 1
                  || this.title.indexOf(" LAB") != -1
@@ -170,14 +198,18 @@ function Section(src, class_list_version) {
                 return true;
         },
         
+        // Checks whether this section conflicts with another.
         conflictsWith: function(other) {
             return this._meetsAt().conflictsWith(other._meetsAt());
         },
         
+        // Checks whether this section conflicts with another that
+        // isn't itself.
         conflictsWithSansSelf: function(other) {
             return this != other && this._meetsAt().conflictsWith(other._meetsAt());
         },
         
+        // Returns the iCal text for this section.
         toICal: function(gen) {
             var note = this.title;
             if (this.instructor != "TBA")
@@ -194,6 +226,7 @@ function Section(src, class_list_version) {
     return a;
 }
 
+// Returns whether a section is "less than" b section.
 function sectionLessThan(a, b) {
     if (a.college != b.college)
         if (a.college > b.college) return 1;
@@ -223,6 +256,8 @@ Array.prototype.getUnique = function(){
     return a;
 };
 
+// Splits a string everywhere a token occurs unless that token is
+// inside quote_marks.
 String.prototype.splitQuoted = function(delim, quote_mark) {
     var prev, i = 0;
     var result = [];
