@@ -431,13 +431,11 @@ function addSection() {
             if (u.class_no == SCHEDULE[j].class_no)
                 can_add = false;
         }
-        if (can_add)
-            SCHEDULE.push(WORKING_LIST[index]);
+        if (can_add) {
+            var cmd = new AddCommand(WORKING_LIST[index]);
+            HISTORY.exec(cmd);
+        }
     }
-    populateScheduleTable();
-    populateSectionTable();
-    populateShareBox();
-    fillInPrintForm();
 }
 
 function removeSection() {
@@ -447,11 +445,8 @@ function removeSection() {
         indices.push(index);
     }
     
-    for (i = indices.length-1; i >= 0; i --)
-        SCHEDULE.splice(indices[i], 1);
-        
-    populateScheduleTable();
-    populateSectionTable();
-    populateShareBox();
-    fillInPrintForm();
+    for (i = indices.length-1; i >= 0; i --) {
+        var cmd = new RemCommand(SCHEDULE[indices[i]]);
+        HISTORY.exec(cmd);
+    }
 }

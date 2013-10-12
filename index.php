@@ -105,6 +105,7 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/searchopts.js"></script>
         <script type="text/javascript" src="js/share.js"></script>
         <script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/history.js"></script>
         
         <!--Google Analytics-->
         <!--To be added later-->
