@@ -52,8 +52,14 @@ $(document).ready(function() {
     });
     
     // Hook up the Add and Remove buttons to their handlers.
-    $("#add_section").click(addSection);
-    $("#rem_section").click(removeSection);
+    $("#add_section").click(function() {
+        analytics("add_section_button");
+        addSection();
+    });
+    $("#rem_section").click(function() {
+        analytics("rem_section_button");
+        removeSection();
+    });
 });
 
 // Timeout variables connected to how long the class list download
@@ -276,7 +282,10 @@ function populateSectionTable() {
     $("#section_body tr").click(function(e){
         last_selected = multiSelect(this, ".section_row", last_selected, e);
     });
-    $("#section_body tr").dblclick(addSection);
+    $("#section_body tr").dblclick(function() {
+        analytics("add_section_dblclick");
+        addSection();
+    });
 }
 
 // Adds a row to the section table for every section in the user's
@@ -323,7 +332,10 @@ function populateScheduleTable() {
     $("#schedule_body tr").click(function(e){
         last_selected = multiSelect(this, ".schedule_row", last_selected, e);
     });
-    $("#schedule_body tr").dblclick(removeSection);
+    $("#schedule_body tr").dblclick(function() {
+        analytics("rem_section_dblclick");
+        removeSection();
+    });
 }
 
 // Fills a table with the classes from the user's schedule so the
@@ -491,6 +503,7 @@ function addSection() {
         if (can_add) {
             var cmd = new AddCommand(WORKING_LIST[index]);
             HISTORY.exec(cmd);
+            analytics("add_section");
         }
     }
     
@@ -512,6 +525,7 @@ function removeSection() {
     for (i = indices.length-1; i >= 0; i --) {
         var cmd = new RemCommand(SCHEDULE[indices[i]]);
         HISTORY.exec(cmd);
+        analytics("rem_section");
     }
     
     populateScheduleTable();

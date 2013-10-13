@@ -23,6 +23,7 @@ function UndoRedo(e) {
     e.ctrlKey = (e.ctrlKey || e.metaKey);
     if (e.ctrlKey) {
         if (e.keyCode === "Z".charCodeAt(0)) {
+            analytics("history_ctrl-z");
             e.preventDefault();
             HISTORY.undo();
             populateScheduleTable();
@@ -31,6 +32,7 @@ function UndoRedo(e) {
             fillInPrintForm();
         }
         if (e.keyCode === "Y".charCodeAt(0)) {
+            analytics("history_ctrl-y");
             e.preventDefault();
             HISTORY.redo();
             populateScheduleTable();
@@ -66,6 +68,7 @@ function History() {
         undo: function() {
             if (this.undo_stack.length === 0)
                 return;
+            analytics("history_undo");
             var cmd = this.undo_stack.pop();
             cmd.undo();
             this.redo_stack.push(cmd);
@@ -77,6 +80,7 @@ function History() {
         redo: function() {
             if (this.redo_stack.length === 0)
                 return;
+            analytics("history_redo");
             var cmd = this.redo_stack.pop();
             cmd.redo();
             this.undo_stack.push(cmd);
@@ -113,6 +117,7 @@ function History() {
         // When the user selects a command from the history dropdown
         // box, this undoes or redoes the proper number of commands.
         change: function() {
+            analytics("history_ddown_change");
             var e = document.getElementById("undoredo");
             if (e.selectedIndex < 0)
                 return;

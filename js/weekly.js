@@ -18,12 +18,14 @@ $(document).ready(function() {
     populateWeeklyView();
     $("#switch_view").click(function(){
         if (weekly_view_showing) {
+            analytics("weekly_view_hide");
             weekly_view_showing = false;
             $("#schedule_list").removeClass("hidden");
             $("#weekly_view").addClass("hidden");
             $("#switch_view").html(show_weekly_str);
         }
         else {
+            analytics("weekly_view_show");
             weekly_view_showing = true;
             $("#schedule_list").addClass("hidden");
             $("#weekly_view").removeClass("hidden");

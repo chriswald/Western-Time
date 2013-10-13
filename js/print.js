@@ -10,6 +10,7 @@
 // Hooks up event handlers.
 $(document).ready(function() {
     $("#print_button").click(function(){
+        analytics("print_button");
         fillInPrintForm();
         print();
     });
@@ -26,6 +27,11 @@ function fillInPrintForm() {
 
 // Get the student name and pin from the input boxes and copy them.
 function fillInStudentInfo() {
+    if ($("#name").val() !== "")
+        analytics("provided_user_name");
+    if ($("#pin").val() !== "")
+        analytics("provided_user_pin");
+    
     $("#stud_name").html($("#name").val());
     $("#stud_pin").html($("#pin").val());
 }
@@ -34,6 +40,7 @@ function fillInStudentInfo() {
 // near the top of the form.
 function fillInNewStudentRegistration() {
     if ($("#new_student").is(":checked")) {
+        analytics("new_student_registration");
         $("#new_student_message").html(
             "Use this worksheet to create a schedule and then copy the class information to your registration card.<br/>" + 
             "BE SURE to get an advisor's signature on this form. Bring both this form AND your card to the registration terminal!"

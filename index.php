@@ -106,6 +106,7 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/share.js"></script>
         <script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/history.js"></script>
+        <script type="text/javascript" src="js/analytics.js"></script>
         
         <!--Google Analytics-->
         <!--To be added later-->
@@ -252,6 +253,7 @@ getFile($url, "res/".$filename);
                 <div id="links_container">
                     <a href="#" 
                         onclick="
+                            analytics('share,share_facebook');
                             window.open(
                             'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(document.location.origin + '/' + getShareLink()), 
                             'facebook-share-dialog', 
@@ -262,6 +264,7 @@ getFile($url, "res/".$filename);
                     <span>&nbsp;&nbsp;</span>
                     <a href="#"
                         onclick="
+                            analytics('share,share_twitter');
                             window.open(
                             'https://twitter.com/share?url='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
                             'twitter-share-dialog',
@@ -272,6 +275,7 @@ getFile($url, "res/".$filename);
                     <span>&nbsp;&nbsp;</span>
                     <a href="#"
                         onclick="
+                            analytics('share,share_google_plus');
                             window.open('https://plus.google.com/share?url='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
                             'google-plus-share-dialog',
                             'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
@@ -281,6 +285,7 @@ getFile($url, "res/".$filename);
                     <span>&nbsp;&nbsp;</span>
                     <a href="#"
                         onclick="
+                            analytics('share,share_pinterest');
                             window.open(
                             'https://www.pinterest.com/pin/create/button/?url='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
                             'pinterest-share-dialog',
@@ -291,6 +296,7 @@ getFile($url, "res/".$filename);
                     <span>&nbsp;&nbsp;</span>
                     <a href="#"
                         onclick="
+                            analytics('share,share_email');
                             window.open(
                             'mailto:?subject=Class+Schedule&body='+encodeURIComponent(document.location.origin + '/' + getShareLink()),
                             'email-dialog',

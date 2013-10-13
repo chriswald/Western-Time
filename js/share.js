@@ -53,6 +53,7 @@ function decodeURL() {
         }
     }
     
+    analytics("share_link_schedule");
     $("#switch_view").click();
 }
 

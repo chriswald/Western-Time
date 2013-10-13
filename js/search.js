@@ -17,10 +17,12 @@
 function Search(opt) {
     var search = $("#search_bar").val().toLowerCase();
     if (search.length === 0) {
+        analytics("empty_search,search");
         if (typeof opt.empty_func !== "undefined")
             opt.empty_func();
     }
     else {
+        analytics("search");
         if (typeof opt.nempty_func !== "undefined")
             opt.nempty_func();
             

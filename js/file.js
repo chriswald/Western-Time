@@ -10,15 +10,24 @@
 
 // Hooks up events.
 $(document).ready(function() {
-    $("#open_button").click(function() {$("#openfile").click();});
+    $("#open_button").click(function() {
+        analytics("open_file");
+        $("#openfile").click();
+    });
     // If the browser supports FileReader then we can use that. If
     // not the file needs to be uploaded to the server, which means
     // that it gets read by php and the text gets inserted into the
     // returned html.
     if (window.FileReader)
-        $("#openfile").change(handleFileLoad);
+        $("#openfile").change(function() {
+            analytics("file_reader_yes");
+            handleFileLoad();
+        });
     else
-        $("#openfile").change(function() { $("#submitfileupload").click(); });
+        $("#openfile").change(function() {
+            analytics("file_reader_no");
+            $("#submitfileupload").click();
+        });
     
     $("#save_button").click(saveFile);
     $("#ddown_button").click(toggleDrop);
@@ -87,6 +96,7 @@ function ParseFile(e) {
             }
         }
         if (!found) {
+            analytics("unfound_class");
             var tokens = lines[i].split(" ");
             sects.push(new Section({program: tokens[0], catalog_no: tokens[1], section: tokens[2], incomplete: true}, 1));
         }
@@ -99,6 +109,7 @@ function ParseFile(e) {
 
 // Generates the contents of a schedule file and sends it for saving.
 function saveFile() {
+    analytics("save_sch");
     var filename = get_season_value() + get_year_value() + ".sch";
     var content = $("#name").val() + "\n";
     content += $("#pin").val() + "\n";
@@ -117,6 +128,7 @@ function sendFileForSave(filename, fileContents) {
 
 // Toggles the "extra save options" dropdown.
 function toggleDrop(event) {
+    analytics("save_dropdown_toggle");
     $("#export_list").toggleClass("hidden");
     event.stopPropagation();
 }
@@ -130,6 +142,7 @@ function exportICAL() {
     $.ajax({
         url: "res/semester_days.txt",
         success: function(response) {
+            analytics("save_ics");
             var lines = response.split("\n");
             var startd, endd;
             for (var i = 0; i < lines.length; i ++) {
@@ -155,6 +168,7 @@ function exportICAL() {
 // Creates a comma seperated values file out of the user's schedule
 // and sends it to the server to be made available for download.
 function exportCSV() {
+    analytics("save_csv");
     var filename = get_season_value() + get_year_value() + ".csv";
     var date = new Date();
     var content = "Report Date: " + (date.getMonth() + 1) + "/" + date.getUTCDate() + "/" + date.getFullYear() + "\n";

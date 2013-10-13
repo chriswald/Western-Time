@@ -2,8 +2,7 @@
 // AUTHOR:  Christopher J. Wald
 // DATE:    Oct 12, 2013
 //
-// DESC:    Handles changing semester with the navigation buttons,
-//          radio buttons, year dropdown, and reload button.
+// DESC:    Handles changing semester with the navigation buttons.
 //
 // KNOWN DEPENDENCIES:
 //          jQuery, index.php
@@ -20,6 +19,7 @@ $(document).ready(function() {
 // required.
 function prev_sem()
 {
+    analytics("prev_sem_button");
     if ($("#Fall").is(":checked") || $("#Summer").is(":checked"))
         $("#Spring").prop("checked", true);
     else
@@ -37,6 +37,7 @@ function prev_sem()
 // Selects the previous term, changing year as required.
 function prev_term()
 {
+    analytics("prev_term_button");
     if ($("#Fall").is(":checked"))
         $("#Summer").prop("checked", true);
     else if ($("#Summer").is(":checked"))
@@ -58,6 +59,7 @@ function prev_term()
 // Selects the next term, changing year as required.
 function next_term()
 {
+    analytics("next_term_button");
     if ($("#Winter").is(":checked"))
         $("#Spring").prop("checked", true);
     else if ($("#Spring").is(":checked"))
@@ -80,6 +82,7 @@ function next_term()
 // required.
 function next_sem()
 {
+    analytics("next_sem_button");
     if ($("#Spring").is(":checked") || $("#Summer").is(":checked"))
         $("#Fall").prop("checked", true);
     else
