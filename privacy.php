@@ -11,6 +11,6 @@
     <body>
         <div class="big">Privacy</div>
         <div class="sub">... is a big deal.</div>
-        <div class="text">That's why Western Time will never store any information about you.<br/><br/>Page views are tracked anonymously using Google Analytics. That information is used to enhance your experience and no personally identifyable info is collected.</div>
+        <div class="text">That's why Western Time will never store any information about you or your schedule.<br/><br/>Page views are tracked anonymously using Google Analytics. That information is used to enhance your experience and no personally identifyable info is collected.</div>
     </body>
 </html>
