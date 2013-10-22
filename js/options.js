@@ -46,11 +46,11 @@ $(document).ready(function(){
     $("#conflict").change(function(){
         if ($("#conflict").is(":checked")) {
             analytics("conflicts_show");
-            $(".conflict_row").removeClass("hidden");
+            $("#section_body .conflict_row").removeClass("hidden");
         }
         else {
             analytics("conflicts_hide");
-            $(".conflict_row").addClass("hidden");
+            $("#section_body .conflict_row").addClass("hidden");
         }
     });
     
