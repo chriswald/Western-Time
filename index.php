@@ -8,6 +8,7 @@ $TITLE='Western Time';
 
 $season = $_GET["season"];
 $year = $_GET["year"];
+$n = $_GET["n"];
 
 $fn = base64_decode($_GET["f"]);
 if ((!$season || !$year) && $fn)
@@ -139,6 +140,10 @@ getFile($url, "res/".$filename);
                 </div>
                 <div id="home_pane" style="clear:both">
                     <form action="./" id="semester" method="get">
+                        <?php
+                            if ($n)
+                                echo "<input type='text' class='hidden' name='n' value=$n>";
+                        ?>
                         <div id="season">
                             <?php
                                 function radio_button($sson)
@@ -208,7 +213,12 @@ getFile($url, "res/".$filename);
                     </div>
                     <hr></hr>
                     <div id="file_container">
-                        <form action=<?php echo "'./?season=$season&year=$year'"; ?> method="post" enctype="multipart/form-data">  
+                        <?php
+                            $action = "./?season=$season&year=$year";
+                            if ($n)
+                                $action .= "&n=$n";
+                        ?>
+                        <form action=<?php echo "'$action'"; ?> method="post" enctype="multipart/form-data">  
                             <input id="openfile" class="missing" type="file" name="file"></input>
                             <input id="submitfileupload" class="missing" type="submit" name="submit"></input>
                             <button id="open_button" type="button" disabled>Open Schedule...</button>
@@ -231,7 +241,7 @@ getFile($url, "res/".$filename);
                             <label for="show_loc">Show Locations</label>
                         </input>
                         <br/>
-                        <input id="new_student" type="checkbox" name="option" value="new_student">
+                        <input id="new_student" type="checkbox" name="option" value="new_student" <?php if ($n) echo "checked='checked' disabled='disabled'";?>>
                             <label for="new_student">New Student Registration</label>
                         </input>
                         <hr/>
