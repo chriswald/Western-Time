@@ -1,7 +1,20 @@
 <?php
+$type = $_POST["t"];
 $metrics = explode(",", $_POST["m"]);
-$lines = explode("\n", file_get_contents("analytics.dat"));
-for ($i = 0; $i < count($metrics); $i ++) {
+
+$dat_file = "analytics.dat";
+$i = 0;
+if ($type) {
+    $dat_file = "sec_stat/" . $metrics[0] . $metrics[1] . "_sec.dat";
+    $i = 2;
+}
+
+if (!file_exists($dat_file)) {
+    file_put_contents($dat_file, "");
+}
+
+$lines = explode("\n", file_get_contents($dat_file));
+for ($i; $i < count($metrics); $i ++) {
     $metric = $metrics[$i];
     $found_metric = false;
     for ($j = 0; $j < count($lines); $j ++) {
@@ -23,5 +36,5 @@ for ($i = 0; $i < count($metrics); $i ++) {
 }
 
 $content = trim(implode("\n", $lines));
-file_put_contents("analytics.dat", $content);
+file_put_contents($dat_file, $content);
 ?>

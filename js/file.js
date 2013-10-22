@@ -122,6 +122,7 @@ function saveFile() {
 // download.
 function sendFileForSave(filename, fileContents) {
     var fcontent = btoa(filename + "\n" + fileContents);
+    pushSchedule();
     $("#contents").val(fcontent);
     $("#submit").click();
 }
@@ -147,7 +148,7 @@ function exportICAL() {
             var startd, endd;
             for (var i = 0; i < lines.length; i ++) {
                 var tokens = lines[i].split(",");
-                if (tokens[0] == season+year) {
+                if (tokens[0] == get_season_value()+get_year_value()) {
                     startd = _Date(tokens[1], tokens[2], tokens[3]);
                     endd = _Date(tokens[4], tokens[5], tokens[6]);
                     break;

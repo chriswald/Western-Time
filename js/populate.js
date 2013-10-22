@@ -139,7 +139,7 @@ function populate(response) {
     // to the browser in a hidden div element. Only check that div element if
     // FileReader is not supported.
     if (!window.FileReader) {
-        var uploaded_file_contents = $("#uploaded_file_contents").html().replace(/^\s/g, "").replace(/\s$/g, "");
+        var uploaded_file_contents = $("#uploaded_file_contents").html();
         if (uploaded_file_contents !== "")
             ParseFile(uploaded_file_contents);
     }

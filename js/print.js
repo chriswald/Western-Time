@@ -11,6 +11,7 @@
 $(document).ready(function() {
     $("#print_button").click(function(){
         analytics("print_button");
+        postSchedule();
         fillInPrintForm();
         print();
     });
@@ -42,8 +43,10 @@ function fillInNewStudentRegistration() {
     if ($("#new_student").is(":checked")) {
         analytics("new_student_registration");
         $("#new_student_message").html(
-            "Use this worksheet to create a schedule and then copy the class information to your registration card.<br/>" + 
-            "BE SURE to get an advisor's signature on this form. Bring both this form AND your card to the registration terminal!"
+            "Use this worksheet to create a schedule and then copy the class" + 
+            " information to your registration card.<br/>" + 
+            "BE SURE to get an advisor's signature on this form. Bring both" + 
+            " this form AND your card to the registration terminal!"
             );
     }
 }
@@ -63,7 +66,11 @@ function fillInScheduleList() {
         str += "<td>" + SCHEDULE[i].section + "</td>";
         str += "<td>" + SCHEDULE[i].class_no + "</td>";
         str += "<td>" + SCHEDULE[i].title + "</td>";
-        str += "<td>" + (SCHEDULE[i].creditHoursInDoubt() ? SEE_PASS : (SCHEDULE[i].credits === 0 ? "" : SCHEDULE[i].credits)) + "</td>";
+        str += "<td>" + 
+                (SCHEDULE[i].creditHoursInDoubt() ? 
+                    SEE_PASS : 
+                    (SCHEDULE[i].credits === 0 ? "" : SCHEDULE[i].credits))
+                + "</td>";
         str += "</tr>";
         output += str;
     }
