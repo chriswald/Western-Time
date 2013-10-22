@@ -5,6 +5,7 @@ $TITLE="Western Time Mobile";
 
 $season = $_GET["season"];
 $year = $_GET["year"];
+$n = $_GET["n"];
 
 $fn = base64_decode($_GET["f"]);
 if ((!$season || !$year) && $fn)
@@ -91,6 +92,7 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/search.js"></script>
         <script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/mobile/populate.js"></script>
+        <script type="text/javascript" src="js/analytics.js"></script>
         <script type="text/javascript" src="js/mobile/menu.js"></script>
         <script type="text/javascript" src="js/mobile/searchopts.js"></script>
     </head>
