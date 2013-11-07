@@ -5,17 +5,28 @@
 // DESC:    Handles all printing (on dead trees) routines.
 //
 // KNOWN DEPENDENCIES:
-//          jQuery, index.php, section.js
+//          jQuery, index.php, section.js, analytics.js
 
 // Hooks up event handlers.
 $(document).ready(function() {
     $("#print_button").click(function(){
-        analytics("print_button");
-        postSchedule();
         fillInPrintForm();
         print();
+        postSchedule();
+        analytics("print_button");
+    });
+    $("html").keydown(function(e){
+        e.ctrlKey = (e.ctrlKey || e.metaKey);
+        if (e.ctrlKey && e.keyCode === "P".charCodeAt(0)) {
+            e.preventDefault();
+            $("#print_button").click();
+        }
     });
 });
+
+function escapeHTML(html) {
+    return document.createTextNode(html);
+}
 
 // Fill in the print form with all the required information.
 function fillInPrintForm() {
@@ -33,8 +44,8 @@ function fillInStudentInfo() {
     if ($("#pin").val() !== "")
         analytics("provided_user_pin");
     
-    $("#stud_name").html($("#name").val());
-    $("#stud_pin").html($("#pin").val());
+    $("#stud_name").html(escapeHTML($("#name").val()));
+    $("#stud_pin").html(escapeHTML($("#pin").val()));
 }
 
 // If this is to be used for new student registration print a message
@@ -80,5 +91,5 @@ function fillInScheduleList() {
 
 // Copy the number of credits to the document.
 function fillInCredits() {
-    $("#total_credits").html("Total Credits: " + $("#credits").val());
+    $("#total_credits").html("Total Credits: " + escapeHTML($("#credits").val()).textContent);
 }

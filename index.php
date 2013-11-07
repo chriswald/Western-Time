@@ -90,6 +90,8 @@ getFile($url, "res/".$filename);
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" href="styles/print.css" type="text/css" media="print">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/ie.js"></script>
+        <script type="text/javascript" src="js/b64.js"></script>
         <script type="text/javascript" src="js/event.js"></script>
         <script type="text/javascript" src="js/meeting.js"></script>
         <script type="text/javascript" src="js/section.js"></script>
@@ -117,8 +119,8 @@ getFile($url, "res/".$filename);
         <div id="index">
             <div class="hidden">
                 <form action="save.php" method="post">
-                    <input id="contents" type="text" name="contents">
-                    <input id="submit"  type="submit" name="submit">
+                    <input id="contents" type="text" name="contents"></input>
+                    <input id="submit"  type="submit" name="submit"></input>
                 </form>
                 <div id="uploaded_file_contents"><?php
                     $extension = end(explode('.', $_FILES["file"]["name"]));
@@ -142,7 +144,7 @@ getFile($url, "res/".$filename);
                     <form action="./" id="semester" method="get">
                         <?php
                             if ($n)
-                                echo "<input type='text' class='hidden' name='n' value=$n>";
+                                echo "<input type='text' class='hidden' name='n' value=$n></input>";
                         ?>
                         <div id="season">
                             <?php
@@ -152,7 +154,7 @@ getFile($url, "res/".$filename);
                                     echo "<input type='radio' name='season' id='" . $sson . "' value='" . $sson . "'";
                                     if ($sson == $season)
                                         echo " checked";
-                                    echo "><label for='" . $sson . "'>" . $sson . "</label><br>";
+                                    echo "><label for='" . $sson . "'>" . $sson . "</label></input><br>";
                                 }
                                 radio_button("Winter");
                                 radio_button("Spring");
@@ -259,6 +261,7 @@ getFile($url, "res/".$filename);
                 <div class="navbar"><h1>Share</h1></div>
                 <form>
                     <input id="share_box" type="text" placeholder="Add classes to make a shareable link..." onclick="this.select()" readonly></input>
+                    <a id="share_link" href="">&nbsp;&nbsp;\\Go</a>
                 </form>
                 <div id="links_container">
                     <a href="#" 
@@ -371,13 +374,13 @@ getFile($url, "res/".$filename);
                         <thead>
                             <tr>
                                 <th></th>
-                                <th class="day_col">Sunday</th>
+                                <th class="day_col hidden">Sunday</th>
                                 <th class="day_col">Monday</th>
                                 <th class="day_col">Tuesday</th>
                                 <th class="day_col">Wednesday</th>
                                 <th class="day_col">Thursday</th>
                                 <th class="day_col">Friday</th>
-                                <th class="day_col">Saturday</th>
+                                <th class="day_col hidden">Saturday</th>
                             </tr>
                         </thead>
                         <tbody id="weekly_view_body">

@@ -346,13 +346,13 @@ function populateWeeklyView() {
     for (var i = 7; i < 18; i ++) {
         var str = "<tr>";
         str += "<td class='hour'>" + (i < 8 ? "Before 8" : (i > 16 ? "Evening" : (i > 12 ? (i-12) : i) + ":00")) + "</td>";
-        str += "<td id=" + i + "su></td>";
+        //str += "<td id=" + i + "su></td>";
         str += "<td id=" + i + "mo></td>";
         str += "<td id=" + i + "tu></td>";
         str += "<td id=" + i + "we></td>";
         str += "<td id=" + i + "th></td>";
         str += "<td id=" + i + "fr></td>";
-        str += "<td id=" + i + "sa></td>";
+        //str += "<td id=" + i + "sa></td>";
         str += "</tr>";
         html += str;
     }
@@ -373,7 +373,8 @@ function populateWeeklyView() {
                             var row = hour <=  7 ? 0
                                     : hour <= 16 ? hour - 7
                                     : 10;
-                            var col = ((j+1) % 7) + 1;
+                            //var col = ((j+1) % 7) + 1;
+                            var col = ((j) % 7) + 1;
                             var jq = "#weekly_view_body tr:eq(" + row + ") td:eq(" + col + ")";
                             var prev = $(jq).html();
                             if (prev !== "")
@@ -400,6 +401,8 @@ function populateShareBox() {
         $("#share_box").val(url + "/" + getShareLink());
     else
         $("#share_box").val("");
+    var goto = $("#share_box").val() === "" ? url : $("#share_box").val();
+    $("#share_link").attr("href", document.location.protocol + "//" + goto);
 }
 
 // Allows selecting multiple sections at once with click, ctrl-click,

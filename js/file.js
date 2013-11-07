@@ -19,9 +19,9 @@ $(document).ready(function() {
     // that it gets read by php and the text gets inserted into the
     // returned html.
     if (window.FileReader)
-        $("#openfile").change(function() {
+        $("#openfile").change(function(evt) {
             analytics("file_reader_yes");
-            handleFileLoad();
+            handleFileLoad(evt);
         });
     else
         $("#openfile").change(function() {

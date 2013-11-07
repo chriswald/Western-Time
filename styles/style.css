@@ -123,7 +123,7 @@ tr {
 }
 
 .day_col {
-    width: 13%;
+    width: 18%;
 }
 
 .navbar {
@@ -193,10 +193,6 @@ tr {
 #information {
     width: 100%;
     margin-top: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
 }
 
 #section_list {
@@ -242,7 +238,7 @@ tr {
 }
 
 #share_box {
-    width: 320px;
+    width: 280px;
     margin-bottom: 10px;
 }
 

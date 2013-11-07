@@ -33,7 +33,7 @@ function MeetTime(str) {
         toICal: function() {
             var hr = (this.hour < 10 ? "0" + this.hour : this.hour);
             var mn = (this.minute < 10 ? "0" + this.minute : this.minute);
-            return hr + ":" + mn + "00";
+            return "" + hr + mn + "00";
         },
         
         // Returns this time as a string.

@@ -1,0 +1,14 @@
+program_change=47
+print_button=15
+provided_user_name=12
+open_file=7
+file_reader_yes=7
+weekly_view_show=9
+weekly_view_hide=5
+add_section_dblclick=11
+add_section=11
+share_link_schedule=4
+rem_section_dblclick=6
+rem_section=5
+save_dropdown_toggle=1
+save_ics=1
