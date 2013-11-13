@@ -244,7 +244,7 @@ function sectionLessThan(a, b) {
 }
 
 // Returns a new array with only the unique values from the initial array.
-Array.prototype.getUnique = function(){
+/*Array.prototype.getUnique = function(){
     var u = {}, a = [];
     for(var i = 0, l = this.length; i < l; ++i){
         if(u.hasOwnProperty(this[i])) {
@@ -254,7 +254,11 @@ Array.prototype.getUnique = function(){
         u[this[i]] = 1;
     }
     return a;
-};
+};*/
+
+Array.prototype.getUnique = function(a){
+    return function(){ return this.filter(a); };
+}(function(a,b,c){ return c.indexOf(a,b+1) < 0 });
 
 // Splits a string everywhere a token occurs unless that token is
 // inside quote_marks.
