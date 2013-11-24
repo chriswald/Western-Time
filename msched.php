@@ -88,6 +88,9 @@ getFile($url, "res/".$filename);
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=false">
         <meta charset="UTF-8">
         
+        <link rel="stylesheet" href="styles/msched.css" type="text/css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/event.js"></script>
         <script type="text/javascript" src="js/meeting.js"></script>
         <script type="text/javascript" src="js/section.js"></script>
