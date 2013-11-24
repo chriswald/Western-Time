@@ -90,11 +90,15 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
         <script type="text/javascript" src="js/search.js"></script>
+        <script type="text/javascript" src="js/share.js"></script>
         <script type="text/javascript" src="js/util.js"></script>
-        <script type="text/javascript" src="js/mobile/populate.js"></script>
         <script type="text/javascript" src="js/analytics.js"></script>
+        <script type="text/javascript" src="js/mobile/populate.js"></script>
         <script type="text/javascript" src="js/mobile/menu.js"></script>
         <script type="text/javascript" src="js/mobile/searchopts.js"></script>
+        <script>
+        $(document).ready(function(){decodeURL();});
+        </script>
     </head>
     
     <body>

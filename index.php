@@ -2,7 +2,14 @@
 include_once("detectmobilebrowser.php");
 $detect = new Mobile_Detect;
 if ($detect->isMobile())
-    header("Location: mobile.php");
+{
+    $location = "mobile";
+    if ($_GET["f"])
+    {
+        $location .= "?f=".$_GET["f"];
+    }
+    header("Location: " . $location);
+}
 
 $TITLE='Western Time';
 
