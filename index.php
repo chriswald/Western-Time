@@ -3,10 +3,10 @@ include_once("detectmobilebrowser.php");
 $detect = new Mobile_Detect;
 if ($detect->isMobile())
 {
-    $location = "mobile";
+    $location = "/mobile/";
     if ($_GET["f"])
     {
-        $location .= "?f=".$_GET["f"];
+        $location .= $_GET["f"];
     }
     header("Location: " . $location);
 }

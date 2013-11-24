@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule ^(\w{12,100})(={0,2})?(/)?$ /index.php?f=$1   [QSA,NC,L]
+RewriteRule ^(\w{12,100})(={0,2})?$ /index.php?f=$1   [QSA,NC,L]
