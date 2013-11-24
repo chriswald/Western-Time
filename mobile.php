@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-
 <?php
+if ($_GET["f"])
+{
+    header("Location: /mobile/".$_GET["f"]);
+}
+
 $TITLE="Western Time Mobile";
 
 $season = $_GET["season"];
 $year = $_GET["year"];
-$n = $_GET["n"];
 
 $fn = base64_decode($_GET["f"]);
 if ((!$season || !$year) && $fn)
@@ -74,6 +76,8 @@ $url = "http://www.uwplatt.edu/csse/uwpclasses/" . $filename;
 getFile($url, "res/".$filename);
 ?>
 
+<!DOCTYPE html>
+
 <html>
     <head>
         <title><?php echo $TITLE; ?></title>
@@ -90,7 +94,6 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
         <script type="text/javascript" src="js/search.js"></script>
-        <script type="text/javascript" src="js/share.js"></script>
         <script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/analytics.js"></script>
         <script type="text/javascript" src="js/mobile/populate.js"></script>
