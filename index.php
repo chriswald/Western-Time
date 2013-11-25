@@ -381,13 +381,11 @@ getFile($url, "res/".$filename);
                         <thead>
                             <tr>
                                 <th></th>
-                                <th class="day_col hidden">Sunday</th>
                                 <th class="day_col">Monday</th>
                                 <th class="day_col">Tuesday</th>
                                 <th class="day_col">Wednesday</th>
                                 <th class="day_col">Thursday</th>
                                 <th class="day_col">Friday</th>
-                                <th class="day_col hidden">Saturday</th>
                             </tr>
                         </thead>
                         <tbody id="weekly_view_body">

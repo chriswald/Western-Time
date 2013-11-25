@@ -1,0 +1,249 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/******************************************
+ The start of my stuff.
+******************************************/
+html {
+    font-family: "Arial", sans-serif;
+    font-size: 1.5em;
+    background-color: white;
+}
+
+thead, .hour {
+    /*background-color: #eeeeee;*/
+    background-color: whitesmoke;
+    font-weight: bold;
+}
+
+table, th, td, .hour {
+    padding: 3px;
+    border: 2px solid gray;
+    empty-cells: show;
+    vertical-align: top;
+}
+
+th, .hour {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+hr {
+    border-color: whitesmoke;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+th {
+    height: 70px;
+}
+
+td {
+    height: 140px;
+}
+
+.extra_meeting {
+    margin-left: 20px;
+    border: none;
+}
+
+.extra_meeting td{
+    vertical-align: top;
+    padding-right: 25px;
+    padding-top: 10px;
+    border: none;
+}
+
+#title {
+    color: white;
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#menu_bar {
+    background-color: #3bb2ff;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+#icons {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.icon {
+    height: 48px;
+    width: 48px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+#menu_body {
+    width: 100%;
+    background-color: white;
+}
+
+#menu_content {
+    margin: 20px;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    padding: 20px 0 20px 0;
+}
+
+#season_container {
+    float: left;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #3bb2ff;
+    color: white;
+    border: none;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #136ca6;
+}
+
+button:active {
+    background-color: #5194bf;
+}
+
+button:disabled, .button:disabled {
+    background-color: gray;
+}
+
+#search_body {
+    width: 100%;
+    height: 90px;
+    background-color: white;
+}
+
+#search_content {
+    margin: 20px;
+}
+
+#search_bar {
+    width: 100%;
+    height: 48px;
+    font-size: inherit;
+    background: none;
+    border: none;
+    border-bottom: 2px solid gray;
+    background-color: whiteSmoke;
+}
+
+select {
+    height: 40px;
+    font-size: 1.25em;
+}
+
+#program_select {
+    width: 100%;
+}
+
+#section_table {
+    width: 100%;
+    /*margin-top: 70px;*/
+}
+
+.closed_row {
+    border-left: 7px solid red;
+}
+
+.sel_row {
+    background-color: #3bb2ff;
+    color: white;
+}
+
+#progress_bar {
+    width: 200px;
+    height: 30px;
+    border: 1px solid gray;
+    background-color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: -101px;
+    box-shadow: 5px 5px 10px gray;
+}
+
+#progress {
+    width: 0;
+    height: 100%;
+    background-color: #136ca6;
+}
+
+#progress_error {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.withClass {
+    background-color: #aedfff;
+    border: 5px solid #136ca6;
+}
+
+.sect_info {
+    padding-top: 10px;
+    padding-left: 15px;
+}

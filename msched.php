@@ -97,10 +97,71 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/dl_classlist.js"></script>
         <script type="text/javascript" src="js/parse_sections.js"></script>
         <script type="text/javascript" src="js/share.js"></script>
+        <script type="text/javascript" src="js/analytics.js"></script>
         <script type="text/javascript" src="js/mobile/msched.js"></script>
     <head>
     
     <body>
-        <p>Hello</p>
+        <form action="./mobile.php" id="semester" class="hidden" method="get">
+            <div id="season_container">
+                <select id="season" name="season">
+                <?php
+                    function radio_button($sson)
+                    {
+                        global $season;
+                        echo "<option value='" . $sson . "'";
+                        if ($sson == $season)
+                            echo " selected='selected'";
+                        echo ">" . $sson . "</option>";
+                    }
+                    radio_button("Winter");
+                    radio_button("Spring");
+                    radio_button("Summer");
+                    radio_button("Fall");
+                ?>
+                </select>
+            </div>
+            <div id="year_container">
+                <select id="year" name="year">
+                <?php
+                    for ($i=$maxyear; $i>=1999; $i--)
+                    {
+                        echo '<option value="' . $i . '"';
+                        if ($i == $year)
+                            echo ' selected';
+                        echo '>' . $i . '</option>';
+                    }
+                ?>
+                </select>
+            </div>
+        </form>
+        
+        <table id="section_table">
+            <thead id="section_table_head">
+                <tr>
+                    <th id="day_header">
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="section_table_body">
+                <?php 
+                    for ($i = 7; $i <= 17; $i ++) {
+                        echo "<tr><td>";
+                        if ($i == 7)
+                            echo "Morning";
+                        else if ($i == 17)
+                            echo "Evening";
+                        else {
+                            if ($i <= 12)
+                                echo $i.":00";
+                            else
+                                echo ($i-12).":00";
+                        }
+                        echo "<br/>";
+                        echo "<div class='sect_info' id='".$i."'></div></td></tr>";
+                    }
+                ?>
+            </tbody>
+        </table>
     </body>
 </html>
