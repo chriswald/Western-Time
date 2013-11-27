@@ -47,25 +47,25 @@ function populateDayView() {
             var start = sect._meetsAt().mtgHour(day-1);
             if (start != -1) {
                 
-                var desc = "";
+                var title, location, start_time;
+                title = sect.title;
                             
                 if (typeof sect._meetsAt().first !== "undefined") {
                     if (sect._meetsAt().first.mtgHour(day-1) !== -1) {
-                        desc = sect.title + " "
-                                + sect._meetsAt().first.place + " "
-                                + sect._meetsAt().first.start.toString();
+                        location = sect._meetsAt().first.place;
+                        start_time = sect._meetsAt().first.start.toString();
                     }
                     else {
-                        desc = sect.title + " "
-                                + sect._meetsAt().second.place + " "
-                                + sect._meetsAt().second.start.toString();
+                        location = sect._meetsAt().second.place;
+                        start_time = sect._meetsAt().second.start.toString();
                     }
                 }
                 else {
-                    desc = sect.title + " "
-                            + sect._meetsAt().place + " "
-                            + sect._meetsAt().start.toString();
+                    location = sect._meetsAt().place;
+                    start_time = sect._meetsAt().start.toString();
                 }
+                
+                var desc = title + "<br/>Location: " + location + "<br/>" + "Starts at: " + start_time;
                 
                 var end = sect._meetsAt().mtgEndHour(day-1);
                 if (start <= end && end != -1) {

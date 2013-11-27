@@ -20,16 +20,22 @@
 //     for a section.
 function decodeURL() {
     var url = document.URL;
-    while (url.indexOf("/") !== -1)
-        url = url.substring(url.indexOf("/")+1);
-    /*if (url.indexOf("index.php") !== -1)
-        url = url.substring(url.indexOf("index.php") + "index.php".length);*/
-    if (url.indexOf("?") !== -1)
-        url = url.substring(0, url.indexOf("?"));
-    if (url !== "")
-        console.log(url);
     
-    if (url === "")
+    // The url must be in the form page.php?var=value
+    if (url.lastIndexOf("?") !== -1) {
+        url = url.substring(url.lastIndexOf("?") + 1);
+        url = url.substring(url.indexOf("=") + 1);
+    }
+    // The url must be in the form /page/value
+    else {
+        url = url.substring(url.lastIndexOf("/") + 1);
+    }
+    
+    // If there is no url left or the remaining url
+    // is a document just return.
+    if (url !== "" || url.indexOf(".") !== -1)
+        console.log(url);
+    else
         return;
     
     url = atob(url);

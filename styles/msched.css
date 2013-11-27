@@ -195,7 +195,6 @@ select {
 
 #section_table {
     width: 100%;
-    /*margin-top: 70px;*/
 }
 
 .closed_row {
@@ -240,7 +239,8 @@ select {
 
 .withClass {
     background-color: #aedfff;
-    border: 5px solid #136ca6;
+    border-top: 5px solid #136ca6;
+    border-bottom: 5px solid #136ca6;
 }
 
 .sect_info {
