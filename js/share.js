@@ -19,21 +19,14 @@
 //     4 digit number >= 1999, and class_no[k] is a 4 digit class_no
 //     for a section.
 function decodeURL() {
-    var url = document.URL;
+    var url = document.location.pathname;
     
-    // The url must be in the form page.php?var=value
-    if (url.lastIndexOf("?") !== -1) {
-        url = url.substring(url.lastIndexOf("?") + 1);
-        url = url.substring(url.indexOf("=") + 1);
+    if (url.lastIndexOf("/") === url.length-1) {
+        url = url.substring(0,url.lastIndexOf("/"));
     }
-    // The url must be in the form /page/value
-    else {
-        url = url.substring(url.lastIndexOf("/") + 1);
-    }
+    url = url.substring(url.lastIndexOf("/") + 1);
     
-    // If there is no url left or the remaining url
-    // is a document just return.
-    if (url !== "" || url.indexOf(".") !== -1)
+    if (url !== "")
         console.log(url);
     else
         return;
