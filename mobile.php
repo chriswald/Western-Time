@@ -84,7 +84,7 @@ getFile($url, "res/".$filename);
         <meta name="author" content="Christopher Wald, with significant contributions from Dr. Robert W. Hasker">
         <meta name="description" content=<?php echo '"' . $TITLE . '"'; ?>>
         <meta name="copyright" content="Copyright (c) 2013 Christopher J. Wald. All rights reserved.">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=false">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles/mobile.css" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -99,9 +99,6 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/mobile/populate.js"></script>
         <script type="text/javascript" src="js/mobile/menu.js"></script>
         <script type="text/javascript" src="js/mobile/searchopts.js"></script>
-        <script>
-        $(document).ready(function(){decodeURL();});
-        </script>
     </head>
     
     <body>

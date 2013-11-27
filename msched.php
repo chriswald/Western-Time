@@ -85,7 +85,7 @@ getFile($url, "res/".$filename);
         <meta name="author" content="Christopher Wald, with significant contributions from Dr. Robert W. Hasker">
         <meta name="description" content=<?php echo '"' . $TITLE . '"'; ?>>
         <meta name="copyright" content="Copyright (c) 2013 Christopher J. Wald. All rights reserved.">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=false">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta charset="UTF-8">
         
         <link rel="stylesheet" href="styles/msched.css" type="text/css">
