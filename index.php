@@ -205,20 +205,16 @@ getFile($url, "res/".$filename);
                     </div>
                     <hr></hr>
                     <div id="option_container">
-                        <form>
-                            <input id="closed" type="checkbox" name="option" value="closed" checked="checked">
-                                <label for="closed">Include Closed Classes</label>
-                            </input>
-                            <input id="conflict" type="checkbox" name="option" value="conflict" checked="checked">
-                                <label for="conflict">Include Conflicts</label>
-                            </input>
-                        </form>
+                        <input id="closed" type="checkbox" name="option" value="closed" checked="checked">
+                            <label for="closed">Include Closed Classes</label>
+                        </input>
+                        <input id="conflict" type="checkbox" name="option" value="conflict" checked="checked">
+                            <label for="conflict">Include Conflicts</label>
+                        </input>
                     </div>
                     <hr></hr>
                     <div id="search_container">
-                        <form>
-                            <input id="search_bar" type="text" placeholder="Search..." disabled></input>
-                        </form>
+                        <input id="search_bar" type="text" placeholder="Search..." disabled></input>
                     </div>
                     <hr></hr>
                     <div id="file_container">
@@ -241,21 +237,19 @@ getFile($url, "res/".$filename);
                     </div>
                 </div>
                 <div id="print_pane" class="hidden">
-                    <form>
-                        <input id="name" type="text" name="name" placeholder="Name (Optional)"></input>
-                        <br/>
-                        <input id="pin" type="text" name="pin" placeholder="PIN (Optional)"></input>
-                        <hr/>
-                        <input id="show_loc" type="checkbox" name="option" value="show_loc">
-                            <label for="show_loc">Show Locations</label>
-                        </input>
-                        <br/>
-                        <input id="new_student" type="checkbox" name="option" value="new_student" <?php if ($n) echo "checked='checked' disabled='disabled'";?>>
-                            <label for="new_student">New Student Registration</label>
-                        </input>
-                        <hr/>
-                        <button type="button" id="print_button" disabled>Print</button>
-                    </form>
+                    <input id="name" type="text" name="name" placeholder="Name (Optional)"></input>
+                    <br/>
+                    <input id="pin" type="text" name="pin" placeholder="PIN (Optional)"></input>
+                    <hr/>
+                    <input id="show_loc" type="checkbox" name="option" value="show_loc">
+                        <label for="show_loc">Show Locations</label>
+                    </input>
+                    <br/>
+                    <input id="new_student" type="checkbox" name="option" value="new_student" <?php if ($n) echo "checked='checked' disabled='disabled'";?>>
+                        <label for="new_student">New Student Registration</label>
+                    </input>
+                    <hr/>
+                    <button type="button" id="print_button" disabled>Print</button>
                 </div>
                 <div id="about_container">
                     <a href="mailto:waldc@uwplatt.edu" target="_blank">\\Contact</a>
@@ -266,10 +260,8 @@ getFile($url, "res/".$filename);
             <div id="sharebar">
                 <button type="button" id="sharebar_btn" onclick="toggleSharebar()" disabled>&middot;&middot;&middot;</button>
                 <div class="navbar"><h1>Share</h1></div>
-                <form>
-                    <input id="share_box" type="text" placeholder="Add classes to make a shareable link..." onclick="this.select()" readonly></input>
-                    <a id="share_link" href="">&nbsp;&nbsp;\\Go</a>
-                </form>
+                <input id="share_box" type="text" placeholder="Add classes to make a shareable link." onclick="this.select()" readonly></input>
+                <a id="share_link" href="">&nbsp;&nbsp;\\Go</a>
                 <div id="links_container">
                     <a href="#" 
                         onclick="
@@ -348,14 +340,12 @@ getFile($url, "res/".$filename);
                     </table>
                 </div>
                 <div id="information">
-                    <form>
-                        <button type="button" id="switch_view">Show Weekly View</button>
-                        <button type="button" id="add_section">&#9660; Add to Schedule</button>
-                        <button type="button" id="rem_section">&#9650; Remove from Schedule</button>
-                        <span class="label">Approximate Credits:</span>
-                        <input id="credits" class="text" type="text" name="credits" readonly></input>
-                        <select id="undoredo"></select>
-                    </form>
+                    <button type="button" id="switch_view">Show Weekly View</button>
+                    <button type="button" id="add_section">&#9660; Add to Schedule</button>
+                    <button type="button" id="rem_section">&#9650; Remove from Schedule</button>
+                    <span class="label">Approximate Credits:</span>
+                    <input id="credits" class="text" type="text" name="credits" readonly></input>
+                    <select id="undoredo"></select>
                 </div>
                 <div id="schedule_list">
                     <table>
