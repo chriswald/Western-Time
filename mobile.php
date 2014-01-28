@@ -99,6 +99,7 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/mobile/populate.js"></script>
         <script type="text/javascript" src="js/mobile/menu.js"></script>
         <script type="text/javascript" src="js/mobile/searchopts.js"></script>
+        <script> if (typeof analytics === "undefined") analytics = function() {} </script>
     </head>
     
     <body>
@@ -109,7 +110,6 @@ getFile($url, "res/".$filename);
                 <image id="menu_button" class="icon" src="img/menu.png" alt="Drop Down Menu"></image>
             </div>
         </div>
-        <div id="spacer" style="height: 70px;"></div>
         <div id="search_body">
             <div id="search_content">
                 <form action="#">
@@ -120,37 +120,44 @@ getFile($url, "res/".$filename);
         <div id="menu_body">
             <div id="menu_content">
                 <form action="./mobile.php" id="semester" method="get">
-                    <div id="season_container">
-                        <select id="season" name="season">
-                        <?php
-                            function radio_button($sson)
-                            {
-                                global $season;
-                                echo "<option value='" . $sson . "'";
-                                if ($sson == $season)
-                                    echo " selected='selected'";
-                                echo ">" . $sson . "</option>";
-                            }
-                            radio_button("Winter");
-                            radio_button("Spring");
-                            radio_button("Summer");
-                            radio_button("Fall");
-                        ?>
-                        </select>
-                    </div>
-                    <div id="year_container">
-                        <select id="year" name="year">
-                        <?php
-                            for ($i=$maxyear; $i>=1999; $i--)
-                            {
-                                echo '<option value="' . $i . '"';
-                                if ($i == $year)
-                                    echo ' selected';
-                                echo '>' . $i . '</option>';
-                            }
-                        ?>
-                        </select>
-                    </div>
+                    <table style="width: 100%;border:0px solid white;">
+                        <thead></thead>
+                        <tbody>
+                            <tr style="border:0px solid white;">
+                                <td style="width:50%;border:0px solid white;">
+                                    <select id="season" name="season">
+                                    <?php
+                                        function radio_button($sson)
+                                        {
+                                            global $season;
+                                            echo "<option value='" . $sson . "'";
+                                            if ($sson == $season)
+                                                echo " selected='selected'";
+                                            echo ">" . $sson . "</option>";
+                                        }
+                                        radio_button("Winter");
+                                        radio_button("Spring");
+                                        radio_button("Summer");
+                                        radio_button("Fall");
+                                    ?>
+                                    </select>
+                                </td>
+                                <td style="border:0px solid white;">
+                                    <select id="year" name="year">
+                                    <?php
+                                        for ($i=$maxyear; $i>=1999; $i--)
+                                        {
+                                            echo '<option value="' . $i . '"';
+                                            if ($i == $year)
+                                                echo ' selected';
+                                            echo '>' . $i . '</option>';
+                                        }
+                                    ?>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div id="reload_btn">
                         <button type="submit" value="Reload" style="width: 100%">Reload</button>
                     </div>
