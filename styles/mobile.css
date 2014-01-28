@@ -102,9 +102,6 @@ td, th {
     background-color: #3bb2ff;
     height: 70px;
     width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 2;
 }
 
 #icons {
@@ -132,9 +129,8 @@ td, th {
     padding: 20px 0 20px 0;
 }
 
-#season_container {
-    float: left;
-    margin-bottom: 20px;
+#season, #year {
+    width: 100%;
 }
 
 button {
