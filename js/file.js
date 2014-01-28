@@ -122,7 +122,6 @@ function saveFile() {
 // download.
 function sendFileForSave(filename, fileContents) {
     var fcontent = btoa(filename + "\n" + fileContents);
-    pushSchedule();
     $("#contents").val(fcontent);
     $("#submit").click();
 }
