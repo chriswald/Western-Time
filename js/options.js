@@ -25,7 +25,7 @@ $(document).ready(function(){
     
     // Show only the programs that belong to the selected college.
     $("#all").change(function(){
-        analytics("all_radion");
+        analytics("all_radio");
         populateProgramCombo();
     });
     $("#ems").change(function(){
