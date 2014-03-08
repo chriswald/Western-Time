@@ -62,7 +62,8 @@ function decodeURL() {
         return;
     }
     
-    SCHEDULE = [];
+    // Clear the schedule. There shouldn't be anything in it, but just in case
+    SCHEDULE.length = 0;
     
     while (url.length >= 4) {
         var token = url.substring(0,4);
