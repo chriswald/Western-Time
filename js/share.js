@@ -33,6 +33,8 @@ function decodeURL() {
     
     url = atob(url);
     
+    // The beginning of the url is formatted <season><year>...
+    // <season> is one character. <year> is 4.
     var svalue = url[0];
     url = url.substring(1);
     var yvalue = url.substring(0, 4);
@@ -40,6 +42,25 @@ function decodeURL() {
     
     console.log("Year: " + yvalue);
     console.log("Season: " + svalue);
+    
+    // Make sure the year is between 1999 (the first year with data) and next year (inclusive).
+    if (parseInt(yvalue, 10) < 1999 || parseInt(yvalue, 10) > new Date().getFullYear()+1) {
+        console.log("*** Year out of bounds.");
+        return;
+    }
+    
+    // Make sure the season value is between 0 (Winter) and 3 (Fall) (inclusive).
+    if (parseInt(svalue, 10) < 0 || parseInt(svalue, 10) > 3) {
+        console.log("*** Season out of bounds.");
+        return;
+    }
+    
+    // A class number is 4 characters long so check that the remaining url
+    // length is a multiple of 4.
+    if (url.length % 4 !== 0) {
+        console.log("*** Bad URL length.");
+        return;
+    }
     
     SCHEDULE = [];
     
