@@ -108,6 +108,7 @@ getFile($url, "res/".$filename);
         <script type="text/javascript" src="js/populate.js"></script>
         <script type="text/javascript" src="js/nav_buttons.js"></script>
         <script type="text/javascript" src="js/file.js"></script>
+        <script type="text/javascript" src="js/drag.js"></script>
         <script type="text/javascript" src="js/options.js"></script>
         <script type="text/javascript" src="js/weekly.js"></script>
         <script type="text/javascript" src="js/print.js"></script>
@@ -122,7 +123,7 @@ getFile($url, "res/".$filename);
         <!--To be added later-->
     </head>
     
-    <body>
+    <body id="filedrag">
         <div id="index">
             <div class="hidden">
                 <form action="save.php" method="post">

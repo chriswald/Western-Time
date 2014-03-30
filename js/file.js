@@ -45,7 +45,7 @@ String.prototype.endsWith = function(suffix) {
 // for validity and sends to the parser.
 function handleFileLoad(evt)
 {
-    var files = evt.target.files;
+    var files = evt.target.files || evt.dataTransfer.files;
     for (var i = 0; i < files.length; i ++) {
         var f = files[i];
         if (!f.name.endsWith(".sch")){
