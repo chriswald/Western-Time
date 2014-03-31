@@ -1,3 +1,5 @@
+var SCHEDULE = [];
+
 $(document).ready(function() {
     var season = $("#season").find(":selected").text();
     var year = $("#year").find(":selected").text();
