@@ -127,35 +127,44 @@ tr {
 }
 
 .navbar {
-    height: 45px;
+    height: 40px;
     line-height: 35px;
     text-align: center;
     font-weight: bold;
 }
 
 .tab, .tab:hover, .tab:active {
-    color: black;
-    cursor: pointer;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top:5px;
     padding-bottom: 5px;
     margin-bottom: 10px;
     width: 70px;
     float: left;
+    border:3px solid #3bb2ff;
+    background-color:#136ca6;
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .tab {
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    transition: border-color 0.2s linear;
+    background-color:#3bb2ff;
+    color:white;
 }
 
 .tab.selected {
-    border-bottom-color: rgba(0,0,0,.7);
+    background-color:white;
+    color:black;
 }
 
 #tabs {
     text-align: center;
-    margin-left: 25px;
+    margin-left: 19px;
 }
 
 #sidebar {
