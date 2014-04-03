@@ -144,6 +144,7 @@ tr {
     border:3px solid #3bb2ff;
     background-color:#136ca6;
     
+    cursor: default;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
