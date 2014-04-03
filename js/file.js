@@ -102,6 +102,9 @@ function ParseFile(e) {
         }
     }
     SCHEDULE = sects;
+    HISTORY.undo_stack.length = 0;
+    HISTORY.redo_stack.length = 0;
+    HISTORY.populate();
     populateShareBox();
     populateScheduleTable();
     fillInPrintForm();
