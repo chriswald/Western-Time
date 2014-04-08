@@ -14,11 +14,13 @@ $(document).ready(function(){
     // that program.
     $("#program").change(function(){
         analytics("program_change");
+        $("#section_list").scrollTop(0);
         getProgramSections();
         populateSectionTable();
     });
     $("#program").keyup(function(){
         analytics("program_change");
+        $("#section_list").scrollTop(0);
         getProgramSections();
         populateSectionTable();
     });
@@ -26,18 +28,22 @@ $(document).ready(function(){
     // Show only the programs that belong to the selected college.
     $("#all").change(function(){
         analytics("all_radio");
+        $("#section_list").scrollTop(0);
         populateProgramCombo();
     });
     $("#ems").change(function(){
         analytics("ems_radio");
+        $("#section_list").scrollTop(0);
         populateProgramCombo();
     });
     $("#lae").change(function(){
         analytics("lae_radio");
+        $("#section_list").scrollTop(0);
         populateProgramCombo();
     });
     $("#bilsa").change(function(){
         analytics("bilsa_radio");
+        $("#section_list").scrollTop(0);
         populateProgramCombo();
     });
     
