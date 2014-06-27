@@ -76,11 +76,11 @@ function getFile($url, $filename) {
 }
 
 $filename = $season . $year . ".dat";
-$url = "http://www.uwplatt.edu/csse/uwpclasses/" . $year . "/" . $filename;
+$url = "http://www2.uwplatt.edu/uwpclasses/" . $year . "/" . $filename;
 getFile($url, "res/".$filename);
 
 $filename = "semester_days.txt";
-$url = "http://www.uwplatt.edu/csse/uwpclasses/" . $filename;
+$url = "http://www2.uwplatt.edu/uwpclasses/" . $filename;
 getFile($url, "res/".$filename);
 ?>
 
