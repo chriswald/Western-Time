@@ -264,18 +264,17 @@ function populateSectionTable() {
     
     checkSectionsForConflicts();
     
-    if ($("#closed").is(":checked")) {
+    if ($("#closed").is(":checked") && $("#conflict").is(":checked")) {
         $("#section_body .closed_row").removeClass("hidden");
+        $("#section_body .conflict_row").removeClass("hidden");
     }
     else {
-        $("#section_body .closed_row").addClass("hidden");
-    }
-    
-    if ($("#conflict").is(":checked")) {
-        $(".conflict_row").removeClass("hidden");
-    }
-    else {
-        $(".conflict_row").addClass("hidden");
+        if (!$("#closed").is(":checked")) {
+            $("#section_body .closed_row").addClass("hidden");
+        }
+        if (!$("#conflict").is(":checked")) {
+            $("#section_body .conflict_row").addClass("hidden");
+        }
     }
     
     var last_selected;
@@ -325,8 +324,22 @@ function populateScheduleTable() {
     checkForConflicts();
     
     $("#credits").val(credits);
-    if (credit_hours_in_doubt)
+    if (credit_hours_in_doubt) {
         $("#credits").val(credits + " +");
+    }
+    
+    if ($("#closed").is(":checked") && $("#conflict").is(":checked")) {
+        $("#section_body .closed_row").removeClass("hidden");
+        $("#section_body .conflict_row").removeClass("hidden");
+    }
+    else {
+        if (!$("#closed").is(":checked")) {
+            $("#section_body .closed_row").addClass("hidden");
+        }
+        if (!$("#conflict").is(":checked")) {
+            $("#section_body .conflict_row").addClass("hidden");
+        }
+    }
     
     var last_selected;
     $("#schedule_body tr").click(function(e){
