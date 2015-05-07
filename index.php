@@ -253,7 +253,7 @@ getFile($url, "res/".$filename);
                     <button type="button" id="print_button" disabled>Print</button>
                 </div>
                 <div id="about_container">
-                    <a href="mailto:waldc@uwplatt.edu" target="_blank">\\Contact</a>
+                    <a href="mailto:wald.j.chris@gmail.com" target="_blank">\\Contact</a>
                     <span>&nbsp;&nbsp;</span>
                     <a href="privacy.php" target="_blank">\\Privacy</a>
                 </div>
